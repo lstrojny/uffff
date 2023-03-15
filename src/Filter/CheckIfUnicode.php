@@ -4,25 +4,17 @@ declare(strict_types=1);
 
 namespace Uffff\Filter;
 
-use Assert\AssertionFailedException;
-use Uffff\Assertion;
 use Uffff\Contracts\Filter;
+use Webmozart\Assert\Assert;
 
 /**
  * @psalm-immutable
  */
 readonly final class CheckIfUnicode implements Filter
 {
-    /**
-     * @throws AssertionFailedException
-     */
     public function __invoke(string $value): string
     {
-        Assertion::notEq(
-            false,
-            preg_match('/^.*$/us', $value),
-            sprintf('Value "%s" contains non-unicode characters', $value)
-        );
+        Assert::notFalse(preg_match('/^.*$/us', $value), 'Value "%s" contains non-unicode characters');
 
         return $value;
     }

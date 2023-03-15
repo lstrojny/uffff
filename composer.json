@@ -6,7 +6,7 @@
         "php": "^8.2",
         "ext-intl": "*",
         "lib-pcre-unicode": "*",
-        "beberlei/assert": "^3.3"
+        "webmozart/assert": "^1.11"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.0",

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Uffff\Tests\Filter;
 
-use Assert\AssertionFailedException;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Uffff\Filter\CheckIfUnicode;
 
@@ -41,7 +41,9 @@ final class CheckIfUnicodeTest extends TestCase
     {
         $check = new CheckIfUnicode();
 
-        $this->expectException(AssertionFailedException::class);
+        $this->expectException(InvalidArgumentException::class);
+
+        /** @psalm-suppress UnusedMethodCall */
         $check(chr(0xC0));
     }
 }

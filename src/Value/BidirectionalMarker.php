@@ -17,10 +17,9 @@ enum BidirectionalMarker: string
 
     /**
      * @psalm-pure
-     * @return list<string>
      */
-    public static function values(): array
+    public static function characters(): string
     {
-        return array_map(static fn (BidirectionalMarker $v) => $v->value, self::cases());
+        return self::LRE->value . self::RLE->value . self::LRO->value . self::RLO->value . self::PDF ->value;
     }
 }

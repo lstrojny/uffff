@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Uffff\Tests\Filter;
 
-use Assert\Assertion;
 use IntlChar;
 use PHPUnit\Framework\TestCase;
 use Uffff\Filter\TrimWhitespace;
+use Webmozart\Assert\Assert;
 
 final class TrimWhitespaceTest extends TestCase
 {
@@ -76,7 +76,7 @@ final class TrimWhitespaceTest extends TestCase
     private static function charName(string $codePoint): string
     {
         $name = IntlChar::charName($codePoint);
-        Assertion::string($name);
+        Assert::string($name);
 
         return $name;
     }

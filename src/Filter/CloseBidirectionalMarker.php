@@ -19,7 +19,7 @@ readonly final class CloseBidirectionalMarker implements Filter
         $nestingLevel = 0;
         /** @psalm-suppress ImpureFunctionCall */
         return preg_replace_callback(
-            '/[' . implode('', BidirectionalMarker::values()) . ']/u',
+            '/[' . BidirectionalMarker::characters() . ']/u',
             function ($marker) use (&$nestingLevel, $pdf) {
                 if ($marker[0] === $pdf) {
                     if ($nestingLevel === 0) {
