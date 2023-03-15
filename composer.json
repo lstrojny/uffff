@@ -46,8 +46,7 @@
         ],
         "static-analysis": "@parallel phpstan psalm",
         "phpstan": "phpstan",
-        "psalm": "psalm --show-info=true",
-        "psalm-ci": "@psalm --output-format=github",
+        "psalm": "ifCi() { test \"$CI\" && echo \"$1\" || echo \"$2\"; }; psalm --show-info=true `ifCi --output-format=github`",
         "style": "ecs check",
         "check": "@parallel test static-analysis style",
         "fmt": "@style --fix"
