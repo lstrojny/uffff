@@ -22,4 +22,4 @@ jobs:
           coverage: xdebug
       - uses: ramsey/composer-install@2.2.0
 
-      - run: ${{ matrix.check }}
+      - run: composer ${{ matrix.check }}
