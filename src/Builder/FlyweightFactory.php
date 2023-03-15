@@ -17,11 +17,15 @@ final class FlyweightFactory
 
     /**
      * @psalm-suppress UnusedConstructor
+     * @codeCoverageIgnore
      */
     private function __construct()
     {
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     private function __clone()
     {
     }

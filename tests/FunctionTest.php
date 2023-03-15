@@ -23,7 +23,15 @@ final class FunctionTest extends TestCase
     /**
      * @covers \Uffff\unicode_or_null
      */
-    public function testFilterUnicodeOrNull(): void
+    public function testFilterUnicodeHandlesValue(): void
+    {
+        self::assertSame("foo\u{202A}bar\u{202C}", unicode_or_null(" foo\u{202A}bar "));
+    }
+
+    /**
+     * @covers \Uffff\unicode_or_null
+     */
+    public function testFilterUnicodeOrNullHandlesNull(): void
     {
         self::assertNull(unicode_or_null(null));
     }
@@ -39,7 +47,15 @@ final class FunctionTest extends TestCase
     /**
      * @covers \Uffff\unicode_untrimmed_or_null
      */
-    public function testFilterUnicodeUntrimmedOrNull(): void
+    public function testFilterUnicodeUntrimmedOrNullDoesNotTrim(): void
+    {
+        self::assertSame("foo\u{202A}bar \u{202C}", unicode_untrimmed_or_null("foo\u{202A}bar \u{202C}"));
+    }
+
+    /**
+     * @covers \Uffff\unicode_untrimmed_or_null
+     */
+    public function testFilterUnicodeUntrimmedOrNullHandlesNull(): void
     {
         self::assertNull(unicode_untrimmed_or_null(null));
     }

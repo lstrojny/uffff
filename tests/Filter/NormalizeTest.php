@@ -24,7 +24,7 @@ final class NormalizeTest extends TestCase
 
     /**
      * @dataProvider nfc
-     * @covers \Uffff\Filter\Normalize::__invoke
+     * @covers \Uffff\Filter\Normalize
      */
     public function testNfcNormalization(string $input, string $output): void
     {
@@ -35,7 +35,7 @@ final class NormalizeTest extends TestCase
 
     /**
      * @dataProvider nfc
-     * @covers \Uffff\Filter\Normalize::__invoke
+     * @covers \Uffff\Filter\Normalize
      */
     public function testNfdNormalization(string $output, string $input): void
     {

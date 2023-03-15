@@ -25,7 +25,7 @@ final class CheckIfUnicodeTest extends TestCase
 
     /**
      * @dataProvider unicode
-     * @covers \Uffff\Filter\IsUnicode::__invoke
+     * @covers \Uffff\Filter\CheckIfUnicode::__invoke
      */
     public function testCheckIfUnicode(string $value): void
     {
@@ -35,7 +35,7 @@ final class CheckIfUnicodeTest extends TestCase
     }
 
     /**
-     * @covers \Uffff\Filter\IsUnicode::__invoke
+     * @covers \Uffff\Filter\CheckIfUnicode::__invoke
      */
     public function testThrowsExceptionOnInvalidUnicode(): void
     {

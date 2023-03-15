@@ -31,7 +31,7 @@ final class FilterBuilderTest extends TestCase
     }
 
     /**
-     * @covers \Uffff\Builder\FilterBuilder::normalize
+     * @covers \Uffff\Builder\FilterBuilder::trimWhitespace
      */
     public function testWithoutTrimWhitespace(): void
     {

@@ -9,12 +9,14 @@
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
+        "ext-xdebug": "*",
         "phpunit/phpunit": "^10.0",
         "phpstan/phpstan": "^1.10",
         "vimeo/psalm": "^5.8",
         "psalm/plugin-phpunit": "^0.18.4",
         "symplify/easy-coding-standard": "^11.2",
-        "veewee/composer-run-parallel": "^1.2"
+        "veewee/composer-run-parallel": "^1.2",
+        "rregeer/phpunit-coverage-check": "^0.3.1"
     },
     "license": "MIT",
     "autoload": {
@@ -32,7 +34,10 @@
         }
     ],
     "scripts": {
-        "test": "phpunit",
+        "test": [
+            "phpunit",
+            "coverage-check build/coverage/clover.xml 100"
+        ],
         "check-phpstan": "phpstan",
         "check-psalm": "psalm --show-info=true",
         "check-fmt": "ecs check",
