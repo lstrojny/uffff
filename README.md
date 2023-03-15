@@ -3,9 +3,10 @@
 Filter unicode user input
 
 Properly processing unicode user input is surprisingly tricky.
- * Ensuring left-to-right markers are closed properly
- * Trimming whitespaces
- * Normalizing unicode to a well-known form
+
+-   Ensuring left-to-right markers are closed properly
+-   Trimming whitespaces
+-   Normalizing unicode to a well-known form
 
 ## High-level API
 
@@ -29,7 +30,7 @@ class Entity
 }
 ```
 
-If the field could be nullable, there is a `_nullable` equivalent.
+If the field could be nullable, there is an equivalent `_or_null` function.
 
 ```php
 Ufff\unicode_or_null(?string $value): ?string
