@@ -19,8 +19,4 @@ readonly final class CheckIfUnicode implements Filter
 
         return $value;
     }
-
-    public static function kaputt()
-    {
-    }
 }
