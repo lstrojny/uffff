@@ -19,6 +19,6 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           coverage: xdebug
-      - uses: ramsey/composer-install@v2.2.0
+      - uses: ramsey/composer-install@2.2.0
 
       - run: ${{ matrix.check }}
