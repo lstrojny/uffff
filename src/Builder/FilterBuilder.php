@@ -16,19 +16,9 @@ use Uffff\Value\NormalizationForm;
  */
 final class FilterBuilder
 {
-    private ?CheckIfUnicode $checkIfUnicode = null;
-
-    private ?TrimWhitespace $trimWhitespace = null;
-
-    private bool $trim = true;
-
-    private ?Normalize $normalizeNfc = null;
-
-    private ?Normalize $normalizeNfd = null;
-
     private NormalizationForm $normalizationForm = NormalizationForm::NFC;
 
-    private ?CloseBidirectionalMarker $closeBidirectionalMarker = null;
+    private bool $trimWhitespace = true;
 
     /**
      * @var list<FilterFn>
@@ -44,7 +34,8 @@ final class FilterBuilder
 
     public function trimWhitespace(bool $trim): self
     {
-        $this->trim = $trim;
+        $this->trimWhitespace = $trim;
+
         return $this;
     }
 
@@ -69,13 +60,14 @@ final class FilterBuilder
         $filters = array_map(
             $shortCircuitEmpty,
             [
-                $this->checkIfUnicode ??= new CheckIfUnicode(),
-                match ($this->normalizationForm) {
-                    NormalizationForm::NFD => $this->normalizeNfd ??= new Normalize($this->normalizationForm),
-                    NormalizationForm::NFC => $this->normalizeNfc ??= new Normalize($this->normalizationForm),
-                },
-                ...($this->trim ? [$this->trimWhitespace ??= new TrimWhitespace()] : []),
-                $this->closeBidirectionalMarker ??= new CloseBidirectionalMarker(),
+                FlyweightFactory::create(CheckIfUnicode::class),
+                FlyweightFactory::createWith(
+                    Normalize::class,
+                    [$this->normalizationForm],
+                    $this->normalizationForm->name
+                ),
+                ...($this->trimWhitespace ? [FlyweightFactory::create(TrimWhitespace::class)] : []),
+                FlyweightFactory::create(CloseBidirectionalMarker::class),
                 ...$this->filters,
             ]
         );

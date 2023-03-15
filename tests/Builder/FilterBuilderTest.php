@@ -17,7 +17,7 @@ final class FilterBuilderTest extends TestCase
     {
         $filter = (new FilterBuilder())->build();
 
-        self::assertSame("foo\u{202A}bar\u{202C}", $filter(" foo\u{202A}bar "));
+        self::assertSame("\u{00E4}foo\u{202A}bar\u{202C}", $filter(" \u{0061}\u{0308}foo\u{202A}bar "));
     }
 
     /**
