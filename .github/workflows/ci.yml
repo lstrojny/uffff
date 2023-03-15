@@ -22,4 +22,7 @@ jobs:
           coverage: xdebug
       - uses: ramsey/composer-install@2.2.0
 
+      - name: Setup problem matchers for PHPUnit
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
       - run: composer ${{ matrix.check }}
