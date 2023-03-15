@@ -2,7 +2,8 @@
 <psalm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="https://getpsalm.org/schema/config"
        xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
-       errorLevel="8"
+       errorLevel="3"
+       findUnusedPsalmSuppress="true"
        resolveFromConfigFile="true"
        findUnusedBaselineEntry="true"
        findUnusedCode="true"
@@ -18,4 +19,9 @@
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
+    <issueHandlers>
+        <MissingReturnType>
+            <errorLevel type="error"/>
+        </MissingReturnType>
+    </issueHandlers>
 </psalm>

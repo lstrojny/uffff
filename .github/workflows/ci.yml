@@ -1,0 +1,26 @@
+name: CI
+
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: [ 8.2 ]
+        check: [ "test", "psalm", "phpstan", "style" ]
+
+    name: "PHP ${{ matrix.php-version }} → ${{ matrix.check }}"
+
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - uses: shivammathur/setup-php@2.24.0
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: xdebug
+      - uses: ramsey/composer-install@2.2.0
+      - uses: lstrojny/phpunit-matcher-action@patch-1
+
+      - run: composer ${{ matrix.check }}
