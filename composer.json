@@ -38,11 +38,12 @@
             "phpunit",
             "coverage-check build/coverage/clover.xml 100"
         ],
-        "check-phpstan": "phpstan",
-        "check-psalm": "psalm --show-info=true",
-        "check-fmt": "ecs check",
-        "fmt": "@check-fmt --fix",
-        "check": "@parallel test check-phpstan check-psalm check-fmt"
+        "static-analysis": "@parallel phpstan psalm",
+        "phpstan": "phpstan",
+        "psalm": "psalm --show-info=true",
+        "style": "ecs check",
+        "check": "@parallel test static-analysis style",
+        "fmt": "@style --fix"
     },
     "config": {
         "allow-plugins": {
