@@ -9,6 +9,7 @@ use Webmozart\Assert\Assert;
 
 /**
  * @psalm-immutable
+ * @internal
  */
 readonly final class CheckIfUnicode implements Filter
 {

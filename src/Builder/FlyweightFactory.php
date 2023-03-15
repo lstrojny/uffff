@@ -8,6 +8,9 @@ namespace Uffff\Builder;
 use Uffff\Contracts\Filter;
 use Webmozart\Assert\Assert;
 
+/**
+ * @internal
+ */
 final class FlyweightFactory
 {
     /**

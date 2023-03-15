@@ -9,6 +9,7 @@ use Uffff\Value\BidirectionalMarker;
 
 /**
  * @psalm-immutable
+ * @internal
  */
 readonly final class CloseBidirectionalMarker implements Filter
 {

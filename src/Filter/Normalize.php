@@ -11,6 +11,7 @@ use Webmozart\Assert\Assert;
 
 /**
  * @psalm-immutable
+ * @internal
  */
 readonly final class Normalize implements Filter
 {

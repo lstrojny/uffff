@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ufff\Builder;
+namespace Uffff\Tests\Builder;
 
 use PHPUnit\Framework\TestCase;
 use Uffff\Builder\FlyweightFactory;
@@ -29,6 +29,17 @@ final class FlyweightFactoryTest extends TestCase
         self::assertSame(
             FlyweightFactory::createWith(CheckIfUnicode::class, [], 'foo'),
             FlyweightFactory::createWith(CheckIfUnicode::class, [], 'foo')
+        );
+    }
+
+    /**
+     * @covers \Uffff\Builder\FlyweightFactory
+     */
+    public function testCreateWithReturnsNewInstanceIfKeysDontMatch(): void
+    {
+        self::assertNotSame(
+            FlyweightFactory::createWith(CheckIfUnicode::class, [], 'foo'),
+            FlyweightFactory::createWith(CheckIfUnicode::class, [], 'bar')
         );
     }
 }

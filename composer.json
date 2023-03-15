@@ -16,7 +16,8 @@
         "psalm/plugin-phpunit": "^0.18.4",
         "symplify/easy-coding-standard": "^11.2",
         "veewee/composer-run-parallel": "^1.2",
-        "rregeer/phpunit-coverage-check": "^0.3.1"
+        "rregeer/phpunit-coverage-check": "^0.3.1",
+        "slevomat/coding-standard": "^8.8"
     },
     "license": "MIT",
     "autoload": {
@@ -26,6 +27,11 @@
         "files": [
             "src/functions.php"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Uffff\\Tests\\": "tests/"
+        }
     },
     "authors": [
         {
@@ -47,7 +53,8 @@
     },
     "config": {
         "allow-plugins": {
-            "veewee/composer-run-parallel": true
+            "veewee/composer-run-parallel": true,
+            "dealerdirect/phpcodesniffer-composer-installer": false
         }
     }
 }

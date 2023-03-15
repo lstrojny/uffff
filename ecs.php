@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use PhpCsFixer\Fixer\Basic\PsrAutoloadingFixer;
 use PhpCsFixer\Fixer\ClassNotation\FinalClassFixer;
 use PhpCsFixer\Fixer\Import\FullyQualifiedStrictTypesFixer;
 use PhpCsFixer\Fixer\Import\GlobalNamespaceImportFixer;
@@ -12,6 +13,7 @@ use PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocIndentFixer;
 use PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer;
+use SlevomatCodingStandard\Sniffs\Namespaces\ReferenceUsedNamesOnlySniff;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
@@ -33,7 +35,6 @@ return function (ECSConfig $ecsConfig): void {
         ]
     );
 
-    // this way you can add sets - group of rules
     $ecsConfig->sets([
         SetList::PHPUNIT,
         SetList::CLEAN_CODE,
@@ -54,4 +55,11 @@ return function (ECSConfig $ecsConfig): void {
     $ecsConfig->ruleWithConfiguration(PhpdocAlignFixer::class, [
         'align' => 'left',
     ]);
+    $ecsConfig->ruleWithConfiguration(PsrAutoloadingFixer::class, [
+        'dir' => 'src',
+    ]);
+    $ecsConfig->ruleWithConfiguration(PsrAutoloadingFixer::class, [
+        'dir' => 'tests',
+    ]);
+    $ecsConfig->ruleWithConfiguration(ReferenceUsedNamesOnlySniff::class, []);
 };

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ufff\Tests\Builder;
+namespace Uffff\Tests\Builder;
 
 use PHPUnit\Framework\TestCase;
 use Uffff\Builder\FilterBuilder;

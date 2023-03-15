@@ -10,6 +10,7 @@ use Webmozart\Assert\Assert;
 
 /**
  * @psalm-immutable
+ * @internal
  */
 readonly final class TrimWhitespace implements Filter
 {

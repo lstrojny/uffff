@@ -16,8 +16,19 @@
 
         php = (nix-shell.api.makePhp pkgs {
           php = "php82";
-          withExtensions =
-            [ "xdebug" "mbstring" "filter" "intl" "openssl" "dom" "tokenizer" "xmlwriter" "simplexml" "opcache" ];
+          withExtensions = [
+            "xdebug"
+            "mbstring"
+            "filter"
+            "intl"
+            "openssl"
+            "dom"
+            "tokenizer"
+            "xmlwriter"
+            "simplexml"
+            "opcache"
+            "curl"
+          ];
 
           extraConfig = ''
             xdebug.mode = coverage
