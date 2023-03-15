@@ -1,0 +1,45 @@
+{
+    "name": "lstrojny/uffff",
+    "description": "Input filter to handle unicode",
+    "type": "library",
+    "require": {
+        "ext-intl": "*",
+        "php": "^8.2",
+        "beberlei/assert": "^3.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "phpstan/phpstan": "^1.10",
+        "vimeo/psalm": "^5.8",
+        "psalm/plugin-phpunit": "^0.18.4",
+        "symplify/easy-coding-standard": "^11.2"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Uffff\\": "src/"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Lars Strojny",
+            "email": "lars@strojny.net"
+        }
+    ],
+    "scripts": {
+        "test": "phpunit",
+        "check-phpstan": "phpstan",
+        "check-psalm": "psalm --show-info=true --no-cache",
+        "check-fmt": "ecs check",
+        "fmt": "@check-fmt --fix",
+        "check": [
+            "@test",
+            "@check-phpstan",
+            "@check-psalm",
+            "@check-fmt"
+        ]
+    }
+}
