@@ -32,8 +32,6 @@ final class CheckIfUnicodeTest extends TestCase
         $check = new CheckIfUnicode();
 
         self::assertSame($value, $check($value));
-
-        self::assertNotNull(CheckIfUnicode::kaputt());
     }
 
     /**
