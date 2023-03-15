@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         php-version: [8.2]
-        check: [ "test", "static-analysis", "style" ]
+        check: [ "test", "psalm", "phpstan", "style" ]
 
     name: "${{ matrix.php-version }} → ${{ matrix.check }}"
 
