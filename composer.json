@@ -47,6 +47,7 @@
         "static-analysis": "@parallel phpstan psalm",
         "phpstan": "phpstan",
         "psalm": "psalm --show-info=true",
+        "psalm-ci": "@psalm --output-format=github",
         "style": "ecs check",
         "check": "@parallel test static-analysis style",
         "fmt": "@style --fix"
