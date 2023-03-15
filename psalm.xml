@@ -11,20 +11,13 @@
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>
-        <PossiblyUnusedMethod>
-            <errorLevel type="suppress">
-                <directory name="tests"/>
-            </errorLevel>
-        </PossiblyUnusedMethod>
-        <UnusedClass>
-            <errorLevel type="suppress">
-                <directory name="tests"/>
-            </errorLevel>
-        </UnusedClass>
         <PossiblyUnusedReturnValue>
             <errorLevel type="suppress">
                 <file name="src/Assertion.php"/>
             </errorLevel>
         </PossiblyUnusedReturnValue>
     </issueHandlers>
+    <plugins>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+    </plugins>
 </psalm>
