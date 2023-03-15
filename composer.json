@@ -3,8 +3,9 @@
     "description": "Input filter to handle unicode",
     "type": "library",
     "require": {
-        "ext-intl": "*",
         "php": "^8.2",
+        "ext-intl": "*",
+        "lib-pcre-unicode": "*",
         "beberlei/assert": "^3.3"
     },
     "require-dev": {
