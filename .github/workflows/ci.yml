@@ -28,7 +28,7 @@ jobs:
         run: composer install --prefer-dist
 
       - name: Tests
-        run: composer tests
+        run: composer test
 
       - name: Psalm
         run: composer psalm -- --output-format=github
