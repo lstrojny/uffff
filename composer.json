@@ -41,7 +41,7 @@
     ],
     "scripts": {
         "test": [
-            "phpunit",
+            "ifCi() { test \"$CI\" && echo \"$1\" || echo \"$2\"; }; phpunit `ifCi --teamcity`",
             "coverage-check build/coverage/clover.xml 100"
         ],
         "static-analysis": "@parallel phpstan psalm",
