@@ -3,52 +3,20 @@ name: CI
 on: [ push ]
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-22.04
+
+    strategy:
+      matrix:
+        php-version: [8.2, 8.3]
+        check: [ "test", "psal -- --output-format=github", "phpstan", "style" ]
 
     steps:
       - uses: actions/checkout@v3.3.0
       - uses: shivammathur/setup-php@2.24.0
         with:
-          php-version: '8.2'
+          php-version: ${{ matrix.php-version }}
           coverage: xdebug
+      - uses: ramsey/composer-install@v2.2.0
 
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-      - name: Cache dependencies
-        uses: actions/cache@v3.2.6
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-
-      - name: Install dependencies
-        run: composer install --prefer-dist
-
-      - name: Tests
-        id: tests
-        run: composer test
-        continue-on-error: true
-
-      - name: Psalm
-        id: psalm
-        run: composer psalm -- --output-format=github
-        continue-on-error: true
-
-      - name: PHPStan
-        id: phpstan
-        run: composer phpstan
-        continue-on-error: true
-
-      - name: Check style
-        id: style
-        run: composer style
-        continue-on-error: true
-
-      - name: Conclude
-        if: ${{ failure() }} || steps.tests.outcome == 'failure' || steps.psalm.outcome == 'failure' || steps.phpstan.outcome == 'failure' || steps.style.outcome == 'failure'
-        run: exit 1
-
-
+      - run: ${{ matrix.check }}
