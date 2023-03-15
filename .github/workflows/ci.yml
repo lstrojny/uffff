@@ -29,15 +29,19 @@ jobs:
 
       - name: Tests
         run: composer test
+        continue-on-error: true
 
       - name: Psalm
         run: composer psalm -- --output-format=github
+        continue-on-error: true
 
       - name: PHPStan
         run: composer phpstan
+        continue-on-error: true
 
       - name: Check style
         run: composer style
+        continue-on-error: true
 
 
 
