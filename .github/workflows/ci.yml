@@ -28,20 +28,27 @@ jobs:
         run: composer install --prefer-dist
 
       - name: Tests
+        id: tests
         run: composer test
         continue-on-error: true
 
       - name: Psalm
+        id: psalm
         run: composer psalm -- --output-format=github
         continue-on-error: true
 
       - name: PHPStan
+        id: phpstan
         run: composer phpstan
         continue-on-error: true
 
       - name: Check style
+        id: style
         run: composer style
         continue-on-error: true
 
+      - name: Conclude
+        if: ${{ failure() }} || steps.tests.outcome == 'failure' || steps.psalm.outcome == 'failure' || steps.phpstan.outcome == 'failure' || steps.style.outcome == 'failure'
+        run: exit 1
 
 
