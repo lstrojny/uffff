@@ -17,7 +17,7 @@ use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
 return function (ECSConfig $ecsConfig): void {
     $ecsConfig->paths([__DIR__]);
-    $ecsConfig->skip([__DIR__ . '/vendor']);
+    $ecsConfig->skip([__DIR__ . '/vendor', __DIR__ . '/build']);
 
     // this way you add a single rule
     $ecsConfig->rules(

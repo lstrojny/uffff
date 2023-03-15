@@ -13,7 +13,8 @@
         "phpstan/phpstan": "^1.10",
         "vimeo/psalm": "^5.8",
         "psalm/plugin-phpunit": "^0.18.4",
-        "symplify/easy-coding-standard": "^11.2"
+        "symplify/easy-coding-standard": "^11.2",
+        "veewee/composer-run-parallel": "^1.2"
     },
     "license": "MIT",
     "autoload": {
@@ -33,14 +34,14 @@
     "scripts": {
         "test": "phpunit",
         "check-phpstan": "phpstan",
-        "check-psalm": "psalm --show-info=true --no-cache",
+        "check-psalm": "psalm --show-info=true",
         "check-fmt": "ecs check",
         "fmt": "@check-fmt --fix",
-        "check": [
-            "@test",
-            "@check-phpstan",
-            "@check-psalm",
-            "@check-fmt"
-        ]
+        "check": "@parallel test check-phpstan check-psalm check-fmt"
+    },
+    "config": {
+        "allow-plugins": {
+            "veewee/composer-run-parallel": true
+        }
     }
 }

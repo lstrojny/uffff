@@ -1,16 +1,21 @@
 <?xml version="1.0"?>
-<psalm errorLevel="8" resolveFromConfigFile="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns="https://getpsalm.org/schema/config"
-xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd" findUnusedBaselineEntry="true"
-findUnusedCode="true">
+<psalm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="https://getpsalm.org/schema/config"
+       xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+       errorLevel="8"
+       resolveFromConfigFile="true"
+       findUnusedBaselineEntry="true"
+       findUnusedCode="true"
+       cacheDirectory="build/cache/psalm">
     <projectFiles>
-        <directory name="src" />
-        <directory name="tests" />
+        <directory name="src"/>
+        <directory name="tests"/>
         <ignoreFiles>
-            <directory name="vendor" />
+            <directory name="vendor"/>
+            <directory name="build"/>
         </ignoreFiles>
     </projectFiles>
     <plugins>
-        <pluginClass class="Psalm\PhpUnitPlugin\Plugin" />
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
 </psalm>
