@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Uffff\Builder;
 
 use Uffff\Contracts\Filter;
+use Uffff\Filter\BalanceBidirectionalMarker;
 use Uffff\Filter\CheckIfUnicode;
-use Uffff\Filter\CloseBidirectionalMarker;
 use Uffff\Filter\HarmonizeNewlines;
 use Uffff\Filter\NormalizeForm;
 use Uffff\Filter\StripNullByte;
@@ -71,8 +71,8 @@ final class FilterBuilder
              * @param FilterFn $filter
              * @return FilterFn
              */
-            fn (callable $filter): callable =>
-            fn (string $value): string => $value === '' ? $value : $filter($value);
+            static fn (callable $filter): callable =>
+            static fn (string $value): string => $value === '' ? $value : $filter($value);
 
         $filters = array_map(
             $shortCircuitEmpty,
@@ -86,19 +86,19 @@ final class FilterBuilder
                 ),
                 FlyweightFactory::createWith(HarmonizeNewlines::class, [$this->newline], $this->newline->name),
                 ...($this->trimWhitespace ? [FlyweightFactory::create(TrimWhitespace::class)] : []),
-                FlyweightFactory::create(CloseBidirectionalMarker::class),
+                FlyweightFactory::create(BalanceBidirectionalMarker::class),
                 ...$this->filters,
                 FlyweightFactory::create(CheckIfUnicode::class),
             ]
         );
 
         return $shortCircuitEmpty(
-            fn (string $value): string => array_reduce(
+            static fn (string $value): string => array_reduce(
                 $filters,
                 /**
                  * @param FilterFn $filter
                  */
-                fn (string $value, callable $filter): string => $filter($value),
+                static fn (string $value, callable $filter): string => $filter($value),
                 $value
             )
         );

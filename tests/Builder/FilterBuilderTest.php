@@ -70,7 +70,7 @@ final class FilterBuilderTest extends TestCase
     public function testRegisterCustomFilter(): void
     {
         $filter = (new FilterBuilder())
-            ->add(fn (string $v) => $v . '!')
+            ->add(static fn (string $v) => $v . '!')
             ->build();
 
         self::assertSame('Hello!', $filter('Hello'));
@@ -84,7 +84,7 @@ final class FilterBuilderTest extends TestCase
     {
         $property = Property::forAll(
             [Generator::choose(0x0, 0x10FFFF)],
-            function (int $dec): bool {
+            static function (int $dec): bool {
                 $char = IntlChar::chr($dec);
                 Assert::string($char);
 

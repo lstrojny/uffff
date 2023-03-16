@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use PhpCsFixer\Fixer\Basic\PsrAutoloadingFixer;
 use PhpCsFixer\Fixer\ClassNotation\FinalClassFixer;
+use PhpCsFixer\Fixer\FunctionNotation\StaticLambdaFixer;
 use PhpCsFixer\Fixer\Import\FullyQualifiedStrictTypesFixer;
 use PhpCsFixer\Fixer\Import\GlobalNamespaceImportFixer;
 use PhpCsFixer\Fixer\Import\NoLeadingImportSlashFixer;
@@ -17,7 +18,7 @@ use SlevomatCodingStandard\Sniffs\Namespaces\ReferenceUsedNamesOnlySniff;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
-return function (ECSConfig $ecsConfig): void {
+return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->paths([__DIR__]);
     $ecsConfig->skip([__DIR__ . '/vendor', __DIR__ . '/build']);
 
@@ -32,6 +33,7 @@ return function (ECSConfig $ecsConfig): void {
             GlobalNamespaceImportFixer::class,
             NoLeadingImportSlashFixer::class,
             PhpUnitStrictFixer::class,
+            StaticLambdaFixer::class,
         ]
     );
 
