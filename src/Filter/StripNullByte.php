@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Uffff\Filter;
 
-use Normalizer;
 use Uffff\Contracts\Filter;
-use Uffff\Value\NormalizationForm;
-use Webmozart\Assert\Assert;
 
 /**
  * @psalm-immutable

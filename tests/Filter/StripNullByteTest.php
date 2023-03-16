@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Uffff\Tests\Filter;
 
 use PHPUnit\Framework\TestCase;
-use Uffff\Filter\NormalizeForm;
 use Uffff\Filter\StripNullByte;
-use Uffff\Value\NormalizationForm;
 
 final class StripNullByteTest extends TestCase
 {
