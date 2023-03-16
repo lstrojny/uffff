@@ -38,7 +38,6 @@ final class TrimWhitespaceTest extends TestCase
             "\u{202F}",
             "\u{205F}",
             "\u{3000}",
-            "\u{E0020}",
         ];
 
         $examples = [

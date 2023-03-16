@@ -50,7 +50,7 @@ return function (ECSConfig $ecsConfig): void {
     ]);
 
     $ecsConfig->ruleWithConfiguration(GeneralPhpdocAnnotationRemoveFixer::class, [
-        'annotations' => ['author', 'package', 'group', 'category'],
+        'annotations' => ['author', 'package', 'category'],
     ]);
     $ecsConfig->ruleWithConfiguration(PhpdocAlignFixer::class, [
         'align' => 'left',

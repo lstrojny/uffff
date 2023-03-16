@@ -17,7 +17,8 @@
         "symplify/easy-coding-standard": "^11.2",
         "veewee/composer-run-parallel": "^1.2",
         "rregeer/phpunit-coverage-check": "^0.3.1",
-        "slevomat/coding-standard": "^8.8"
+        "slevomat/coding-standard": "^8.8",
+        "steos/quickcheck": "*"
     },
     "license": "MIT",
     "autoload": {
@@ -41,7 +42,7 @@
     ],
     "scripts": {
         "test": [
-            "ifCi() { test \"$CI\" && echo \"$1\" || echo \"$2\"; }; phpunit `ifCi --teamcity`",
+            "ifCi() { test \"$CI\" && echo \"$1\" || echo \"$2\"; }; phpunit `ifCi '--teamcity --group default,expensive'`",
             "coverage-check build/coverage/clover.xml 100"
         ],
         "static-analysis": "@parallel phpstan psalm",

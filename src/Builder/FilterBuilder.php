@@ -9,6 +9,7 @@ use Uffff\Filter\CheckIfUnicode;
 use Uffff\Filter\CloseBidirectionalMarker;
 use Uffff\Filter\HarmonizeNewlines;
 use Uffff\Filter\NormalizeForm;
+use Uffff\Filter\StripNullByte;
 use Uffff\Filter\TrimWhitespace;
 use Uffff\Value\Newline;
 use Uffff\Value\NormalizationForm;
@@ -76,6 +77,7 @@ final class FilterBuilder
         $filters = array_map(
             $shortCircuitEmpty,
             [
+                FlyweightFactory::create(StripNullByte::class),
                 FlyweightFactory::create(CheckIfUnicode::class),
                 FlyweightFactory::createWith(
                     NormalizeForm::class,
@@ -86,6 +88,7 @@ final class FilterBuilder
                 ...($this->trimWhitespace ? [FlyweightFactory::create(TrimWhitespace::class)] : []),
                 FlyweightFactory::create(CloseBidirectionalMarker::class),
                 ...$this->filters,
+                FlyweightFactory::create(CheckIfUnicode::class),
             ]
         );
 
