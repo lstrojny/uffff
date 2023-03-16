@@ -107,7 +107,7 @@ final class FilterBuilderTest extends TestCase
                     throw $e;
                 }
 
-                $bidi = in_array(
+                $bidiFormat = in_array(
                     IntlChar::charDirection($dec),
                     [
                         IntlChar::CHAR_DIRECTION_RIGHT_TO_LEFT_OVERRIDE,
@@ -117,18 +117,42 @@ final class FilterBuilderTest extends TestCase
                     ],
                     true
                 );
+                $bidiIsolate = in_array(
+                    IntlChar::charDirection($dec),
+                    [
+                        IntlChar::CHAR_DIRECTION_RIGHT_TO_LEFT_ISOLATE,
+                        IntlChar::CHAR_DIRECTION_LEFT_TO_RIGHT_ISOLATE,
+                        IntlChar::CHAR_DIRECTION_FIRST_STRONG_ISOLATE,
+                    ],
+                    true
+                );
+                $bidiPop = in_array(
+                    IntlChar::charDirection($dec),
+                    [
+                        IntlChar::CHAR_DIRECTION_POP_DIRECTIONAL_FORMAT,
+                        IntlChar::CHAR_DIRECTION_POP_DIRECTIONAL_ISOLATE,
+                    ],
+                    true
+                );
 
                 $spaceLike = IntlChar::isspace($dec) || IntlChar::iscntrl($dec);
 
                 $result = ($spaceLike && $output === '') ||
                     (! normalizer_is_normalized($char) && $output === normalizer_normalize($char))
-                    || ($bidi && $output === $char . "\u{202C}")
-                    || ($char === "\u{202C}" && $output === '')
+                    || ($bidiFormat && $output === $char . "\u{202C}")
+                    || ($bidiIsolate && $output === $char . "\u{2069}")
+                    || ($bidiPop && $output === '')
                     || $output === $char;
 
                 Assert::true(
                     $result,
-                    sprintf('Property must hold true for "%s" (0x%s), got out put "%s"', $char, dechex($dec), $output)
+                    sprintf(
+                        'Property must hold true for "%s" (0x%s), got output "%s" (0x%s)',
+                        $char,
+                        dechex($dec),
+                        $output,
+                        bin2hex($output)
+                    )
                 );
 
                 return $result;
