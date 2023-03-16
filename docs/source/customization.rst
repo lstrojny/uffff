@@ -1,6 +1,7 @@
 Implementing custom filters
 ===========================
 
+
 What makes a filter
 -------------------
 
@@ -21,6 +22,7 @@ Classic function
         return $text . '?';
     }
 
+
 Anonymous function
 ~~~~~~~~~~~~~~~~~~
 
@@ -28,6 +30,7 @@ Anonymous function
 
     <?php
     $appendQuestionMark = static fn (string $text): string => $text . '?';
+
 
 Callable class
 ~~~~~~~~~~~~~~
@@ -49,6 +52,7 @@ Callable class
     }
 
 The preferred version is to use a callable class but *you do you*.
+
 
 Building a custom filter chain
 ------------------------------
@@ -80,6 +84,7 @@ To add a custom filter, call ``add`` on the builder object.
         ->build();
 
     $text = $filter('some text');
+
 
 Bring your own API
 ------------------

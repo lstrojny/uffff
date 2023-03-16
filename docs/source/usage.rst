@@ -12,6 +12,7 @@ To install **Uffff**, use composer and require ``lstrojny/uffff``.
 
     composer require lstrojny/uffff
 
+
 Pre-defined filters
 -------------------
 
