@@ -10,7 +10,7 @@ use Uffff\Builder\FilterBuilder;
  * @phpstan-pure
  * @psalm-immutable
  */
-function unicode(string $value): string
+function unicode(string $text): string
 {
     /** @var (callable(string): string)|null $filter */
     static $filter = null;
@@ -18,28 +18,28 @@ function unicode(string $value): string
     $filter ??= (new FilterBuilder())
         ->build();
 
-    return $filter($value);
+    return $filter($text);
 }
 
 /**
  * @phpstan-pure
  * @psalm-immutable
- * @return ($value is null ? null : string)
+ * @return ($text is null ? null : string)
  */
-function unicode_or_null(?string $value): ?string
+function unicode_or_null(?string $text): ?string
 {
-    if ($value === null) {
+    if ($text === null) {
         return null;
     }
 
-    return unicode($value);
+    return unicode($text);
 }
 
 /**
  * @phpstan-pure
  * @psalm-immutable
  */
-function unicode_untrimmed(string $value): string
+function unicode_untrimmed(string $text): string
 {
     /** @var (callable(string): string)|null $filter */
     static $filter = null;
@@ -48,19 +48,19 @@ function unicode_untrimmed(string $value): string
         ->trimWhitespace(false)
         ->build();
 
-    return $filter($value);
+    return $filter($text);
 }
 
 /**
  * @phpstan-pure
  * @psalm-immutable
- * @return ($value is null ? null : string)
+ * @return ($text is null ? null : string)
  */
-function unicode_untrimmed_or_null(?string $value): ?string
+function unicode_untrimmed_or_null(?string $text): ?string
 {
-    if ($value === null) {
+    if ($text === null) {
         return null;
     }
 
-    return unicode_untrimmed($value);
+    return unicode_untrimmed($text);
 }

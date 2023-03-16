@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Uffff\Contracts;
+namespace Uffff\Contract;
 
 /**
  * @phpstan-pure
@@ -11,5 +11,5 @@ namespace Uffff\Contracts;
  */
 interface Filter
 {
-    public function __invoke(string $value): string;
+    public function __invoke(string $text): string;
 }
