@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Uffff\Tests\Filter;
 
 use PHPUnit\Framework\TestCase;
-use Uffff\Filter\Normalize;
+use Uffff\Filter\NormalizeForm;
 use Uffff\Value\NormalizationForm;
 
-final class NormalizeTest extends TestCase
+final class NormalizeFormTest extends TestCase
 {
     /**
      * @return array<string, array{string, string}>
@@ -24,22 +24,22 @@ final class NormalizeTest extends TestCase
 
     /**
      * @dataProvider nfc
-     * @covers \Uffff\Filter\Normalize
+     * @covers \Uffff\Filter\NormalizeForm
      */
     public function testNfcNormalization(string $input, string $output): void
     {
-        $normalize = new Normalize();
+        $normalize = new NormalizeForm(NormalizationForm::NFC);
 
         self::assertSame($output, $normalize($input));
     }
 
     /**
      * @dataProvider nfc
-     * @covers \Uffff\Filter\Normalize
+     * @covers \Uffff\Filter\NormalizeForm
      */
     public function testNfdNormalization(string $output, string $input): void
     {
-        $normalize = new Normalize(NormalizationForm::NFD);
+        $normalize = new NormalizeForm(NormalizationForm::NFD);
 
         self::assertSame($output, $normalize($input));
     }

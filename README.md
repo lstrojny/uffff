@@ -1,12 +1,13 @@
 # Uffff
 
-Filter unicode user input
+# Filter unicode user input
 
-Properly processing unicode user input is surprisingly tricky.
+Properly processing unicode user input is surprisingly tricky:
 
 -   Ensuring left-to-right markers are closed properly
--   Trimming whitespaces
--   Normalizing unicode to a well-known form
+-   Trimming whitespaces and handling esoteric unicode whitespaces well
+-   Normalizing unicode equivalent characters to a well-known form
+-   Harmonizing newlines to a single format
 
 ## High-level API
 
