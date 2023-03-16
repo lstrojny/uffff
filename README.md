@@ -3,7 +3,7 @@
 
 Properly processing unicode user input is surprisingly tricky:
 
--   Ensuring left-to-right markers are closed properly
+-   Ensuring bidirectional markers are balanced properly
 -   Trimming whitespaces and handling esoteric unicode whitespaces well
 -   Normalizing unicode equivalent characters to a well-known form
 -   Harmonizing newlines to a single format
