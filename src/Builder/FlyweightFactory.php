@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 namespace Uffff\Builder;
 
-use Uffff\Contracts\Filter;
+use Uffff\Contract\Filter;
 use Webmozart\Assert\Assert;
 
 /**

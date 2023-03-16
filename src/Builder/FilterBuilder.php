@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Uffff\Builder;
 
-use Uffff\Contracts\Filter;
+use Uffff\Contract\Filter;
 use Uffff\Filter\BalanceBidirectionalMarker;
 use Uffff\Filter\CheckIfUnicode;
 use Uffff\Filter\HarmonizeNewlines;

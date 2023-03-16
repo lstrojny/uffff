@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Uffff\Filter;
 
-use Uffff\Contracts\Filter;
+use Uffff\Contract\Filter;
 use Uffff\Value\Newline;
 use Webmozart\Assert\Assert;
 
@@ -25,9 +25,9 @@ readonly final class HarmonizeNewlines implements Filter
     /**
      * @phpstan-pure
      */
-    public function __invoke(string $value): string
+    public function __invoke(string $text): string
     {
-        $harmonized = preg_replace(self::REGEX, $this->newline->value, $value);
+        $harmonized = preg_replace(self::REGEX, $this->newline->value, $text);
 
         Assert::string($harmonized, 'Cannot standardize newlines in "%s"');
 

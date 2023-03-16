@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Uffff\Filter;
 
-use Uffff\Contracts\Filter;
+use Uffff\Contract\Filter;
 
 /**
  * @psalm-immutable
@@ -15,8 +15,8 @@ readonly final class StripNullByte implements Filter
     /**
      * @phpstan-pure
      */
-    public function __invoke(string $value): string
+    public function __invoke(string $text): string
     {
-        return str_replace(chr(0x0), '', $value);
+        return str_replace(chr(0x0), '', $text);
     }
 }

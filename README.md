@@ -1,6 +1,5 @@
-# Uffff
-
-# Filter unicode user input
+# Uffff - Filter unicode user input
+[![CI](https://github.com/lstrojny/uffff/actions/workflows/ci.yml/badge.svg)](https://github.com/lstrojny/uffff/actions/workflows/ci.yml) [![Documentation Status](https://readthedocs.org/projects/uffff/badge/?version=latest)](https://uffff.readthedocs.io/en/latest/?badge=latest)
 
 Properly processing unicode user input is surprisingly tricky:
 
@@ -8,45 +7,12 @@ Properly processing unicode user input is surprisingly tricky:
 -   Trimming whitespaces and handling esoteric unicode whitespaces well
 -   Normalizing unicode equivalent characters to a well-known form
 -   Harmonizing newlines to a single format
+-   … and more
 
-## High-level API
-
-```php
-Ufff\unicode(string $value): string
-```
-
-The idea is to use it directly in an entity, e.g.
+With **Uffff** the problem is reduced to:
 
 ```php
-use Uffff\unicode;
-
-class Entity
-{
-    private string $name;
-
-    public __construct(string $name): void
-    {
-        $this->name = unicode($name);
-    }
-}
+$good = Ufff\unicode($bad);
 ```
 
-If the field could be nullable, there is an equivalent `_or_null` function.
-
-```php
-Ufff\unicode_or_null(?string $value): ?string
-```
-
-```php
-use Uffff\unicode_or_null;
-
-class Entity
-{
-    private ?string $optional;
-
-    public __construct(?string $optional = null): void
-    {
-        $this->name = unicode_or_null($optional);
-    }
-}
-```
+[Read the docs](https://uffff.readthedocs.io/) for learn more

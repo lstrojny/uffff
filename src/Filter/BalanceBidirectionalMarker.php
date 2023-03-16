@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Uffff\Filter;
 
-use Uffff\Contracts\Filter;
+use Uffff\Contract\Filter;
 use Uffff\Value\BidirectionalMarker;
 
 /**
@@ -16,7 +16,7 @@ readonly final class BalanceBidirectionalMarker implements Filter
     /**
      * @phpstan-pure
      */
-    public function __invoke(string $value): string
+    public function __invoke(string $text): string
     {
         // Based on http://www.iamcal.com/understanding-bidirectional-text/
         $pops = [
@@ -38,7 +38,7 @@ readonly final class BalanceBidirectionalMarker implements Filter
                     }
                 };
             },
-            $value
+            $text
         );
 
         /** @var array<string, int> $pops */
