@@ -13,6 +13,8 @@ use Uffff\Value\BidirectionalMarker;
  */
 readonly final class BalanceBidirectionalMarker implements Filter
 {
+    private const REGEX = '/[' . BidirectionalMarker::CHARACTERS . ']/u';
+
     /**
      * @phpstan-pure
      */
@@ -25,7 +27,7 @@ readonly final class BalanceBidirectionalMarker implements Filter
         ];
 
         $cleaned = preg_replace_callback(
-            '/[' . BidirectionalMarker::characters() . ']/u',
+            self::REGEX,
             static function ($match) use (&$pops) {
                 /** @var array<string, int> $pops */
                 [$marker] = $match;

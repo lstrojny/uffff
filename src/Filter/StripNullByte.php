@@ -12,11 +12,13 @@ use Uffff\Contract\Filter;
  */
 readonly final class StripNullByte implements Filter
 {
+    private const NULL = "\0";
+
     /**
      * @phpstan-pure
      */
     public function __invoke(string $text): string
     {
-        return str_replace(chr(0x0), '', $text);
+        return str_replace(self::NULL, '', $text);
     }
 }

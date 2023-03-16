@@ -21,21 +21,15 @@ enum BidirectionalMarker: string
     case FIRST_STRONG_ISOLATE = "\u{2068}";
     case POP_DIRECTIONAL_ISOLATE = "\u{2069}";
 
-    /**
-     * @psalm-pure
-     */
-    public static function characters(): string
-    {
-        return self::LEFT_TO_RIGHT_EMBEDDING->value
-            . self::RIGHT_TO_LEFT_EMBEDDING->value
-            . self::LEFT_TO_RIGHT_OVERRIDE->value
-            . self::RIGHT_TO_LEFT_OVERRIDE->value
-            . self::POP_DIRECTIONAL_FORMATTING->value
-            . self::LEFT_TO_RIGHT_ISOLATE->value
-            . self::RIGHT_TO_LEFT_ISOLATE->value
-            . self::FIRST_STRONG_ISOLATE->value
-            . self::POP_DIRECTIONAL_ISOLATE->value;
-    }
+    public const CHARACTERS = self::LEFT_TO_RIGHT_EMBEDDING->value
+    . self::RIGHT_TO_LEFT_EMBEDDING->value
+    . self::LEFT_TO_RIGHT_OVERRIDE->value
+    . self::RIGHT_TO_LEFT_OVERRIDE->value
+    . self::POP_DIRECTIONAL_FORMATTING->value
+    . self::LEFT_TO_RIGHT_ISOLATE->value
+    . self::RIGHT_TO_LEFT_ISOLATE->value
+    . self::FIRST_STRONG_ISOLATE->value
+    . self::POP_DIRECTIONAL_ISOLATE->value;
 
     /**
      * @psalm-pure

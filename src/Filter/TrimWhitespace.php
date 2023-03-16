@@ -14,14 +14,16 @@ use Webmozart\Assert\Assert;
  */
 readonly final class TrimWhitespace implements Filter
 {
+    private const WHITESPACE = '(?![' . BidirectionalMarker::CHARACTERS . '])[\p{Zs}\p{Cc}]+';
+
+    private const REGEX = '/^' . self::WHITESPACE . '|' . self::WHITESPACE . '$/u';
+
     /**
      * @phpstan-pure
      */
     public function __invoke(string $text): string
     {
-        $characters = '(?![' . BidirectionalMarker::characters() . "])[\p{Zs}\p{Cc}]+";
-
-        $trimmed = preg_replace('/^' . $characters . '|' . $characters . '$/u', '', $text);
+        $trimmed = preg_replace(self::REGEX, '', $text);
 
         Assert::string($trimmed, sprintf('Value "%s" cannot be trimmed', $text));
 

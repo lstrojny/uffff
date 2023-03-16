@@ -13,13 +13,15 @@ use Webmozart\Assert\Assert;
  */
 readonly final class CheckIfUnicode implements Filter
 {
+    private const REGEX = '/^.*$/us';
+
     /**
      * @phpstan-pure
      */
     public function __invoke(string $text): string
     {
         Assert::notFalse(
-            preg_match('/^.*$/us', $text),
+            preg_match(self::REGEX, $text),
             sprintf('Value "%s" (%s) contains non-unicode characters', $text, bin2hex($text))
         );
 

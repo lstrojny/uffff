@@ -22,12 +22,12 @@ final class BidirectionalMarkerTest extends TestCase
     }
 
     /**
-     * @covers \Uffff\Value\BidirectionalMarker::characters
+     * @covers \Uffff\Value\BidirectionalMarker
      * @dataProvider markers
      */
     public function testCharactersReturnListOfAllMarkerCharacters(BidirectionalMarker $case): void
     {
-        self::assertStringContainsString($case->value, BidirectionalMarker::characters());
+        self::assertStringContainsString($case->value, BidirectionalMarker::CHARACTERS);
     }
 
     /**

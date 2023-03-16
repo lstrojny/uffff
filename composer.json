@@ -48,7 +48,7 @@
         "static-analysis": "@parallel phpstan psalm",
         "phpstan": "phpstan",
         "psalm": [
-            "mkdir build",
+            "mkdir -p build",
             "ifCi() { test \"$CI\" && echo \"$1\" || echo \"$2\"; }; psalm --show-info=true `ifCi --output-format=github`"
         ],
         "style": "ecs check",
