@@ -13,6 +13,9 @@ use Webmozart\Assert\Assert;
  */
 readonly final class CheckIfUnicode implements Filter
 {
+    /**
+     * @phpstan-pure
+     */
     public function __invoke(string $value): string
     {
         Assert::notFalse(

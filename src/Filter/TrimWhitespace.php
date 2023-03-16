@@ -14,6 +14,9 @@ use Webmozart\Assert\Assert;
  */
 readonly final class TrimWhitespace implements Filter
 {
+    /**
+     * @phpstan-pure
+     */
     public function __invoke(string $value): string
     {
         $characters = '(?![' . BidirectionalMarker::characters() . "])[\p{Zs}\p{Cc}]+";

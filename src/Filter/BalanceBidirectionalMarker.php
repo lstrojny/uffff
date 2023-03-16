@@ -13,6 +13,9 @@ use Uffff\Value\BidirectionalMarker;
  */
 readonly final class BalanceBidirectionalMarker implements Filter
 {
+    /**
+     * @phpstan-pure
+     */
     public function __invoke(string $value): string
     {
         // Based on http://www.iamcal.com/understanding-bidirectional-text/

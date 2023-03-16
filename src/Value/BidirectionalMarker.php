@@ -6,6 +6,7 @@ namespace Uffff\Value;
 
 /**
  * @internal
+ * @psalm-immutable
  */
 enum BidirectionalMarker: string
 {
@@ -25,8 +26,7 @@ enum BidirectionalMarker: string
      */
     public static function characters(): string
     {
-        return ''
-            . self::LEFT_TO_RIGHT_EMBEDDING->value
+        return self::LEFT_TO_RIGHT_EMBEDDING->value
             . self::RIGHT_TO_LEFT_EMBEDDING->value
             . self::LEFT_TO_RIGHT_OVERRIDE->value
             . self::RIGHT_TO_LEFT_OVERRIDE->value
@@ -43,8 +43,15 @@ enum BidirectionalMarker: string
     public static function getPopChar(string $opener): ?string
     {
         return match (self::tryFrom($opener)) {
-            self::LEFT_TO_RIGHT_EMBEDDING, self::RIGHT_TO_LEFT_EMBEDDING , self::LEFT_TO_RIGHT_OVERRIDE , self::RIGHT_TO_LEFT_OVERRIDE => self::POP_DIRECTIONAL_FORMATTING->value,
-            self::LEFT_TO_RIGHT_ISOLATE, self::RIGHT_TO_LEFT_ISOLATE, self::FIRST_STRONG_ISOLATE => self::POP_DIRECTIONAL_ISOLATE->value,
+            self::LEFT_TO_RIGHT_EMBEDDING,
+            self::RIGHT_TO_LEFT_EMBEDDING,
+            self::LEFT_TO_RIGHT_OVERRIDE,
+            self::RIGHT_TO_LEFT_OVERRIDE => self::POP_DIRECTIONAL_FORMATTING->value,
+
+            self::LEFT_TO_RIGHT_ISOLATE,
+            self::RIGHT_TO_LEFT_ISOLATE,
+            self::FIRST_STRONG_ISOLATE => self::POP_DIRECTIONAL_ISOLATE->value,
+
             default => null,
         };
     }
