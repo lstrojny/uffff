@@ -16,7 +16,6 @@ readonly final class BalanceBidirectionalMarker implements Filter
     public function __invoke(string $value): string
     {
         // Based on http://www.iamcal.com/understanding-bidirectional-text/
-
         $pops = [
             BidirectionalMarker::POP_DIRECTIONAL_FORMATTING->value => 0,
             BidirectionalMarker::POP_DIRECTIONAL_ISOLATE->value => 0,
@@ -40,15 +39,6 @@ readonly final class BalanceBidirectionalMarker implements Filter
         );
 
         /** @var array<string, int> $pops */
-        return $cleaned . implode(
-            '',
-            array_map(
-                /**
-                 * @param array{string, int} $args
-                 */
-                static fn (array $args): string => str_repeat(...$args),
-                array_map(null, array_keys($pops), $pops)
-            )
-        );
+        return $cleaned . implode('', array_map(static fn ($c) => str_repeat($c, $pops[$c]), array_keys($pops)));
     }
 }
