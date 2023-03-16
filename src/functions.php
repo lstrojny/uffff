@@ -14,7 +14,10 @@ function unicode(string $value): string
 {
     static $filter = null;
 
-    return ($filter ??= (new FilterBuilder())->build())($value);
+    $filter ??= (new FilterBuilder())
+        ->build();
+
+    return $filter($value);
 }
 
 /**
@@ -39,7 +42,11 @@ function unicode_untrimmed(string $value): string
 {
     static $filter = null;
 
-    return ($filter ??= (new FilterBuilder())->trimWhitespace(false)->build())($value);
+    $filter ??= (new FilterBuilder())
+        ->trimWhitespace(false)
+        ->build();
+
+    return $filter($value);
 }
 
 /**
