@@ -12,6 +12,9 @@ use Uffff\Contracts\Filter;
  */
 readonly final class StripNullByte implements Filter
 {
+    /**
+     * @phpstan-pure
+     */
     public function __invoke(string $value): string
     {
         return str_replace(chr(0x0), '', $value);

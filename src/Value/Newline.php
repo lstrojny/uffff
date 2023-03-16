@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Uffff\Value;
 
+/**
+ * @psalm-immutable
+ */
 enum Newline: string
 {
     case UNIX = "\n";

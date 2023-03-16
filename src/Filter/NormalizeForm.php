@@ -20,6 +20,9 @@ readonly final class NormalizeForm implements Filter
     ) {
     }
 
+    /**
+     * @phpstan-pure
+     */
     public function __invoke(string $value): string
     {
         $form = match ($this->form) {
