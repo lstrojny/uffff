@@ -88,6 +88,7 @@ final class FilterBuilder
                 ...($this->trimWhitespace ? [FlyweightFactory::create(TrimWhitespace::class)] : []),
                 FlyweightFactory::create(CloseBidirectionalMarker::class),
                 ...$this->filters,
+                FlyweightFactory::create(CheckIfUnicode::class),
             ]
         );
 
