@@ -91,18 +91,16 @@ final class FilterBuilderTest extends TestCase
                 try {
                     $output = ((new FilterBuilder())->build())($char);
                 } catch (Throwable $e) {
-                    // Low surrogates should explode
-                    if ($dec >= 0xDC00 && $dec <= 0xDFFF) {
-                        return true;
-                    }
-
-                    // High surrogates should explode
-                    if ($dec >= 0xD800 && $dec <= 0xDB7F) {
-                        return true;
-                    }
-
-                    // Private use high surrogates should explode
-                    if ($dec >= 0xDB80 && $dec <= 0xDBFF) {
+                    // Surrogates should explode as they are invalid UTF-8
+                    if (in_array(
+                        IntlChar::getBlockCode($dec),
+                        [
+                            IntlChar::BLOCK_CODE_LOW_SURROGATES,
+                            IntlChar::BLOCK_CODE_HIGH_SURROGATES,
+                            IntlChar::BLOCK_CODE_HIGH_PRIVATE_USE_SURROGATES,
+                        ],
+                        true
+                    )) {
                         return true;
                     }
 
@@ -130,7 +128,7 @@ final class FilterBuilderTest extends TestCase
 
                 Assert::true(
                     $result,
-                    sprintf('Property must hold true for "%s" (%d), got out put "%s"', $char, $dec, $output)
+                    sprintf('Property must hold true for "%s" (0x%s), got out put "%s"', $char, dechex($dec), $output)
                 );
 
                 return $result;
