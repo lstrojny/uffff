@@ -39,7 +39,13 @@
           default = pkgs.mkShellNoCC {
             name = "ufff";
 
-            buildInputs = [ php php.packages.composer pkgs.mailhog ];
+            buildInputs = [
+              php
+              php.packages.composer
+              pkgs.mailhog
+              pkgs.sphinx
+              (pkgs.python3.withPackages (p: with p; [ sphinx-rtd-theme ]))
+            ];
           };
         };
       });
