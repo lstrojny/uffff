@@ -65,7 +65,12 @@ final class FilterBuilder
      */
     public function build(): callable
     {
-        $shortCircuitEmpty = fn (callable $filter): callable =>
+        $shortCircuitEmpty =
+            /**
+             * @param FilterFn $filter
+             * @return FilterFn
+             */
+            fn (callable $filter): callable =>
             fn (string $value): string => $value === '' ? $value : $filter($value);
 
         $filters = array_map(
@@ -87,6 +92,9 @@ final class FilterBuilder
         return $shortCircuitEmpty(
             fn (string $value): string => array_reduce(
                 $filters,
+                /**
+                 * @param FilterFn $filter
+                 */
                 fn (string $value, callable $filter): string => $filter($value),
                 $value
             )

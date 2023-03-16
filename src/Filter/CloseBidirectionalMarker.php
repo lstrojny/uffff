@@ -6,6 +6,7 @@ namespace Uffff\Filter;
 
 use Uffff\Contracts\Filter;
 use Uffff\Value\BidirectionalMarker;
+use Webmozart\Assert\Assert;
 
 /**
  * @psalm-immutable
@@ -19,22 +20,28 @@ readonly final class CloseBidirectionalMarker implements Filter
         $pdf = BidirectionalMarker::PDF->value;
         $nestingLevel = 0;
         /** @psalm-suppress ImpureFunctionCall */
-        return preg_replace_callback(
+        $cleaned = preg_replace_callback(
             '/[' . BidirectionalMarker::characters() . ']/u',
             function ($marker) use (&$nestingLevel, $pdf) {
+                Assert::integer($nestingLevel, 'Make static analysis happy');
+
                 if ($marker[0] === $pdf) {
                     if ($nestingLevel === 0) {
                         return '';
                     }
 
-                    $nestingLevel--;
+                    --$nestingLevel;
                 } else {
-                    $nestingLevel++;
+                    ++$nestingLevel;
                 }
 
                 return $marker[0];
             },
             $value
-        ) . str_repeat($pdf, $nestingLevel);
+        );
+
+        Assert::integer($nestingLevel, 'Make static analysis happy');
+
+        return $cleaned . str_repeat($pdf, $nestingLevel);
     }
 }
