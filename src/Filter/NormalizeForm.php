@@ -13,10 +13,10 @@ use Webmozart\Assert\Assert;
  * @psalm-immutable
  * @internal
  */
-readonly final class Normalize implements Filter
+readonly final class NormalizeForm implements Filter
 {
     public function __construct(
-        private NormalizationForm $form = NormalizationForm::NFC
+        private NormalizationForm $form
     ) {
     }
 

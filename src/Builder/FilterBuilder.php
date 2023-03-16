@@ -7,8 +7,10 @@ namespace Uffff\Builder;
 use Uffff\Contracts\Filter;
 use Uffff\Filter\CheckIfUnicode;
 use Uffff\Filter\CloseBidirectionalMarker;
-use Uffff\Filter\Normalize;
+use Uffff\Filter\HarmonizeNewlines;
+use Uffff\Filter\NormalizeForm;
 use Uffff\Filter\TrimWhitespace;
+use Uffff\Value\Newline;
 use Uffff\Value\NormalizationForm;
 
 /**
@@ -18,6 +20,8 @@ final class FilterBuilder
 {
     private NormalizationForm $normalizationForm = NormalizationForm::NFC;
 
+    private Newline $newline = Newline::UNIX;
+
     private bool $trimWhitespace = true;
 
     /**
@@ -25,9 +29,16 @@ final class FilterBuilder
      */
     private array $filters = [];
 
-    public function normalize(NormalizationForm $normalizationForm): self
+    public function normalizeForm(NormalizationForm $normalizationForm): self
     {
         $this->normalizationForm = $normalizationForm;
+
+        return $this;
+    }
+
+    public function harmonizeNewlines(Newline $newline): self
+    {
+        $this->newline = $newline;
 
         return $this;
     }
@@ -62,10 +73,11 @@ final class FilterBuilder
             [
                 FlyweightFactory::create(CheckIfUnicode::class),
                 FlyweightFactory::createWith(
-                    Normalize::class,
+                    NormalizeForm::class,
                     [$this->normalizationForm],
                     $this->normalizationForm->name
                 ),
+                FlyweightFactory::createWith(HarmonizeNewlines::class, [$this->newline], $this->newline->name),
                 ...($this->trimWhitespace ? [FlyweightFactory::create(TrimWhitespace::class)] : []),
                 FlyweightFactory::create(CloseBidirectionalMarker::class),
                 ...$this->filters,
