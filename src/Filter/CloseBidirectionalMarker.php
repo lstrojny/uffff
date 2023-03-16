@@ -18,21 +18,21 @@ readonly final class CloseBidirectionalMarker implements Filter
     {
         // Based on http://www.iamcal.com/understanding-bidirectional-text/
         $pdf = BidirectionalMarker::PDF->value;
-        $nestingLevel = 0;
+        $bidiNestingLevel = 0;
         /** @psalm-suppress ImpureFunctionCall */
         $cleaned = preg_replace_callback(
             '/[' . BidirectionalMarker::characters() . ']/u',
-            function ($marker) use (&$nestingLevel, $pdf) {
-                Assert::integer($nestingLevel, 'Make static analysis happy');
+            function ($marker) use (&$bidiNestingLevel, $pdf) {
+                Assert::integer($bidiNestingLevel, 'Make static analysis happy');
 
                 if ($marker[0] === $pdf) {
-                    if ($nestingLevel === 0) {
+                    if ($bidiNestingLevel === 0) {
                         return '';
                     }
 
-                    --$nestingLevel;
+                    --$bidiNestingLevel;
                 } else {
-                    ++$nestingLevel;
+                    ++$bidiNestingLevel;
                 }
 
                 return $marker[0];
@@ -40,8 +40,8 @@ readonly final class CloseBidirectionalMarker implements Filter
             $value
         );
 
-        Assert::integer($nestingLevel, 'Make static analysis happy');
+        Assert::integer($bidiNestingLevel, 'Make static analysis happy');
 
-        return $cleaned . str_repeat($pdf, $nestingLevel);
+        return $cleaned . str_repeat($pdf, $bidiNestingLevel);
     }
 }

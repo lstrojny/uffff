@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Uffff\Filter;
 
+use Normalizer;
 use Uffff\Contracts\Filter;
+use Uffff\Value\NormalizationForm;
 use Webmozart\Assert\Assert;
 
 /**
  * @psalm-immutable
  * @internal
  */
-readonly final class CheckIfUnicode implements Filter
+readonly final class StripNullByte implements Filter
 {
     public function __invoke(string $value): string
     {
-        Assert::notFalse(preg_match('/^.*$/us', $value), sprintf('Value "%s" (%s) contains non-unicode characters', $value, bin2hex($value)));
-
-        return $value;
+        return str_replace(chr(0x0), '', $value);
     }
 }

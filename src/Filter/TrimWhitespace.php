@@ -16,7 +16,7 @@ readonly final class TrimWhitespace implements Filter
 {
     public function __invoke(string $value): string
     {
-        $characters = '(?![' . BidirectionalMarker::characters() . "])[\p{Zs}\p{Cc}\p{Cf}]+";
+        $characters = '(?![' . BidirectionalMarker::characters() . "])[\p{Zs}\p{Cc}]+";
 
         $trimmed = preg_replace('/^' . $characters . '|' . $characters . '$/u', '', $value);
 
