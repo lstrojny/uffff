@@ -23,7 +23,7 @@ final class BidirectionalMarkerTest extends TestCase
 
     /**
      * @covers \Uffff\Value\BidirectionalMarker::characters
-     *@dataProvider markers
+     * @dataProvider markers
      */
     public function testCharactersReturnListOfAllMarkerCharacters(BidirectionalMarker $case): void
     {
