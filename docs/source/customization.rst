@@ -42,13 +42,13 @@ Callable class
      */
     readonly class AppendQuestionMark implements Filter
     {
-        public function filter(string $text): string
+        public function __invoke(string $text): string
         {
             return $text . '?';
         }
     }
 
-The preferred version is the callable class but *you do you*.
+The preferred version is to use a callable class but *you do you*.
 
 Building a custom filter chain
 ------------------------------
@@ -84,8 +84,8 @@ To add a custom filter, call ``add`` on the builder object.
 Bring your own API
 ------------------
 
-Since your custom filter chain should probably work in multiple contexts, wrap it in a custom filter function to
-use it consistently across your project.
+Since your custom filter chain most likely needs to work in exactly the same way in many places, wrap it in a custom
+filter function to provide your own internal API.
 
 .. code-block:: php
 
