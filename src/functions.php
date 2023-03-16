@@ -12,6 +12,7 @@ use Uffff\Builder\FilterBuilder;
  */
 function unicode(string $value): string
 {
+    /** @var (callable(string): string)|null $filter */
     static $filter = null;
 
     $filter ??= (new FilterBuilder())
@@ -40,6 +41,7 @@ function unicode_or_null(?string $value): ?string
  */
 function unicode_untrimmed(string $value): string
 {
+    /** @var (callable(string): string)|null $filter */
     static $filter = null;
 
     $filter ??= (new FilterBuilder())

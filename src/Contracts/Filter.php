@@ -7,7 +7,7 @@ namespace Uffff\Contracts;
 /**
  * @phpstan-pure
  * @psalm-immutable
- * @phpstan-type FilterFn callable(string): string
+ * @phpstan-type FilterFn (callable(string): string)
  */
 interface Filter
 {
