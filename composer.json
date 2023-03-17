@@ -1,10 +1,11 @@
 {
     "name": "lstrojny/uffff",
-    "description": "Input filter to handle unicode",
+    "description": "Unicode input processing made trivial",
     "type": "library",
     "require": {
         "php": "^8.2",
         "ext-intl": "*",
+        "ext-pcre": "*",
         "lib-pcre-unicode": "*",
         "webmozart/assert": "^1.11"
     },

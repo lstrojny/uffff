@@ -1,4 +1,4 @@
-# Uffff - *Unicode processing made trivial*!
+# Uffff - *Unicode input processing made trivial*!
 [![CI](https://github.com/lstrojny/uffff/actions/workflows/ci.yml/badge.svg)](https://github.com/lstrojny/uffff/actions/workflows/ci.yml) [![Documentation Status](https://readthedocs.org/projects/uffff/badge/?version=latest)](https://uffff.readthedocs.io/en/latest/?badge=latest)
 
 Properly processing unicode user input is surprisingly tricky:
