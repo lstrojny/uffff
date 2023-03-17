@@ -6,9 +6,8 @@ namespace Uffff\Tests\Builder\Fixture;
 
 use Uffff\Contract\Filter;
 
-class OverlappingClassName implements Filter
+final class OverlappingClassName implements Filter
 {
-
     public function __invoke(string $text): string
     {
         return $text;

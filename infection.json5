@@ -12,5 +12,9 @@
     "tmpDir": "build/cache/infection",
     "mutators": {
         "@default": true
+    },
+    "mutators": {
+        "global-ignoreSourceCodeByRegex": [
+            "Assert::.*"
+        ]
     }
-}

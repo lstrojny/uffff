@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 use QuickCheck\Generator;
 use QuickCheck\PHPUnit\PropertyConstraint;
 use QuickCheck\Property;
+use RuntimeException;
 use Throwable;
 use Uffff\Builder\FilterBuilder;
 use Uffff\Value\Newline;
@@ -68,7 +69,7 @@ final class FilterBuilderTest extends TestCase
     {
         $filter = (new FilterBuilder())
             ->add(static fn (string $v) => '')
-            ->add(static fn (string $v) => throw new \RuntimeException('Should not happen'))
+            ->add(static fn (string $v) => throw new RuntimeException('Should not happen'))
             ->build();
 
         self::assertSame('', $filter('something'));
