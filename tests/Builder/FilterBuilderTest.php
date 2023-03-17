@@ -25,7 +25,7 @@ final class FilterBuilderTest extends TestCase
         $filter = (new FilterBuilder())
             ->build();
 
-        self::assertSame("\u{00E4}foo\n\u{202A}bar\u{202C}", $filter(" \u{0061}\u{0308}foo\r\n\u{202A}bar\n\r "));
+        self::assertSame("\u{00E4}foo\n\u{202A}bar\u{202C}", $filter(" \u{0061}\u{0308}foo\0\r\n\u{202A}bar\n\r "));
     }
 
     public function testWithCustomNormalization(): void
@@ -62,6 +62,16 @@ final class FilterBuilderTest extends TestCase
             ->build();
 
         self::assertSame('Hello!', $filter('Hello'));
+    }
+
+    public function testShortCircuitsOnceChainProducesEmptyString(): void
+    {
+        $filter = (new FilterBuilder())
+            ->add(static fn (string $v) => '')
+            ->add(static fn (string $v) => throw new \RuntimeException('Should not happen'))
+            ->build();
+
+        self::assertSame('', $filter('something'));
     }
 
     /**

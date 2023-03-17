@@ -25,6 +25,7 @@ readonly final class TrimWhitespace implements Filter
     {
         $trimmed = preg_replace(self::ANY_LEADING_OR_TRAILING_WHITESPACE, '', $text);
 
+        /** @infection-ignore-all */
         Assert::string($trimmed, sprintf('Value "%s" cannot be trimmed', $text));
 
         return $trimmed;
