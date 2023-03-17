@@ -72,9 +72,8 @@ final class FlyweightFactoryTest extends TestCase
     {
         $this->expectException(RuntimeException::class);
         /** @psalm-suppress InvalidClone,PossiblyNullFunctionCall */
-        (static fn (): mixed => clone (new ReflectionClass(FlyweightFactory::class))->newInstanceWithoutConstructor())->bindTo(
-            null,
+        (static fn (): mixed => clone (new ReflectionClass(
             FlyweightFactory::class
-        )();
+        ))->newInstanceWithoutConstructor())->bindTo(null, FlyweightFactory::class)();
     }
 }
