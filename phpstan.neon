@@ -6,5 +6,10 @@ parameters:
         - build/*
         - vendor/*
     tmpDir: build/cache/phpstan
+    scanFiles:
+        # Somehow these cannot be automatically found
+        - vendor/squizlabs/php_codesniffer/src/Sniffs/Sniff.php
+        - vendor/squizlabs/php_codesniffer/src/Standards/Squiz/Sniffs/WhiteSpace/LanguageConstructSpacingSniff.php
+        - vendor/squizlabs/php_codesniffer/src/Standards/Squiz/Sniffs/WhiteSpace/SuperfluousWhitespaceSniff.php
     bootstrapFiles:
-        - vendor/symplify/easy-coding-standard/vendor/autoload.php
+        - vendor/symplify/easy-coding-standard/vendor/scoper-autoload.php

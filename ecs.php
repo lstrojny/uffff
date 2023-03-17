@@ -55,6 +55,7 @@ return static function (ECSConfig $ecsConfig): void {
             NoLeadingImportSlashFixer::class,
             PhpUnitStrictFixer::class,
             StaticLambdaFixer::class,
+            ReferenceUsedNamesOnlySniff::class,
         ]
     );
 
@@ -76,7 +77,8 @@ return static function (ECSConfig $ecsConfig): void {
             ReturnTypeDeclarationFixer::class,
             SpaceAfterSemicolonFixer::class,
             TernaryOperatorSpacesFixer::class,
-            MethodArgumentSpaceFixer::class, LanguageConstructSpacingSniff::class,
+            MethodArgumentSpaceFixer::class,
+            LanguageConstructSpacingSniff::class,
         ]
     );
     $ecsConfig->ruleWithConfiguration(ClassAttributesSeparationFixer::class, [
@@ -124,5 +126,4 @@ return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->ruleWithConfiguration(PsrAutoloadingFixer::class, [
         'dir' => 'tests',
     ]);
-    $ecsConfig->ruleWithConfiguration(ReferenceUsedNamesOnlySniff::class, []);
 };
