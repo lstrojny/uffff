@@ -125,7 +125,7 @@ final class FilterBuilderTest extends TestCase
                 $spaceLike = IntlChar::isspace($dec) || IntlChar::iscntrl($dec);
 
                 $result = ($spaceLike && $output === '') ||
-                    (! normalizer_is_normalized($char) && $output === normalizer_normalize($char))
+                    (!normalizer_is_normalized($char) && $output === normalizer_normalize($char))
                     || ($bidiFormat && $output === $char . "\u{202C}")
                     || ($bidiIsolate && $output === $char . "\u{2069}")
                     || ($bidiPop && $output === '')
