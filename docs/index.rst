@@ -1,4 +1,4 @@
-Uffff – *Unicode processing made trivial*!
+Uffff – *Unicode processing made trivial!*
 ==========================================
 
 **Uffff**, pronounced as *oof* (/uːf/), the sound one makes when realizing the amount of work necessary to properly
