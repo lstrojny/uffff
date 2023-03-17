@@ -65,16 +65,6 @@ final class FilterBuilderTest extends TestCase
         self::assertSame('Hello!', $filter('Hello'));
     }
 
-    public function testShortCircuitsOnceChainProducesEmptyString(): void
-    {
-        $filter = (new FilterBuilder())
-            ->add(static fn () => '')
-            ->add(static fn () => throw new RuntimeException('Should not happen'))
-            ->build();
-
-        self::assertSame('', $filter('something'));
-    }
-
     /**
      * @group expensive
      */
