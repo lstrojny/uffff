@@ -10,6 +10,8 @@
         "html": "build/infection/infection.html",
     },
     "tmpDir": "build/cache/infection",
+    "minCoveredMsi": 100,
+    "minMsi": 100,
     "mutators": {
         "@default": true,
         "global-ignoreSourceCodeByRegex": [
