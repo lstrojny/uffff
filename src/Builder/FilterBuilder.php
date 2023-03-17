@@ -71,8 +71,7 @@ final class FilterBuilder
              * @param FilterFn $filter
              * @return FilterFn
              */
-            static fn (callable $filter): callable =>
-            static fn (string $value): string => $value === '' ? $value : $filter($value);
+            static fn (callable $filter): callable => static fn (string $text): string => $text === '' ? $text : $filter($text);
 
         $filters = array_map(
             $shortCircuitEmpty,
@@ -93,13 +92,13 @@ final class FilterBuilder
         );
 
         return $shortCircuitEmpty(
-            static fn (string $value): string => array_reduce(
+            static fn (string $text): string => array_reduce(
                 $filters,
                 /**
                  * @param FilterFn $filter
                  */
-                static fn (string $value, callable $filter): string => $filter($value),
-                $value
+                static fn (string $text, callable $filter): string => $filter($text),
+                $text
             )
         );
     }
