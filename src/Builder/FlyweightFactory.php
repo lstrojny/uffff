@@ -66,7 +66,6 @@ final class FlyweightFactory
     {
         $instance = self::$registry[$registryKey] ??= new $className(...$arguments);
 
-        /** @infection-ignore-all */
         Assert::isInstanceOf($instance, $className);
 
         return $instance;

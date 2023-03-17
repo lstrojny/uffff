@@ -68,8 +68,8 @@ final class FilterBuilderTest extends TestCase
     public function testShortCircuitsOnceChainProducesEmptyString(): void
     {
         $filter = (new FilterBuilder())
-            ->add(static fn (string $v) => '')
-            ->add(static fn (string $v) => throw new RuntimeException('Should not happen'))
+            ->add(static fn () => '')
+            ->add(static fn () => throw new RuntimeException('Should not happen'))
             ->build();
 
         self::assertSame('', $filter('something'));

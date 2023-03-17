@@ -29,7 +29,6 @@ readonly final class HarmonizeNewlines implements Filter
     {
         $harmonized = preg_replace(self::ANY_NEWLINE, $this->newline->value, $text);
 
-        /** @infection-ignore-all */
         Assert::string($harmonized, 'Cannot standardize newlines in "%s"');
 
         return $harmonized;

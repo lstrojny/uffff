@@ -36,7 +36,6 @@ readonly final class NormalizeForm implements Filter
 
         $normalized = Normalizer::normalize($text, $form);
 
-        /** @infection-ignore-all */
         Assert::string($normalized, sprintf('Value "%s" cannot be normalized', $text));
 
         return $normalized;
