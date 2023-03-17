@@ -7,4 +7,5 @@ parameters:
         - vendor/*
     tmpDir: build/cache/phpstan
     bootstrapFiles:
-        - vendor/symplify/easy-coding-standard/vendor/autoload.php
+        - vendor/squizlabs/php_codesniffer/autoload.php
+        - vendor/symplify/easy-coding-standard/vendor/scoper-autoload.php

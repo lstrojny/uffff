@@ -6,9 +6,12 @@ namespace Uffff\Tests\Filter;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Uffff\Filter\CheckIfUnicode;
+use Uffff\Filter\AssertWellFormedUnicode;
 
-final class CheckIfUnicodeTest extends TestCase
+/**
+ * @covers \Uffff\Filter\AssertWellFormedUnicode
+ */
+final class AssertWellFormedUnicodeTest extends TestCase
 {
     /**
      * @return array<string, array{string}>
@@ -25,25 +28,21 @@ final class CheckIfUnicodeTest extends TestCase
 
     /**
      * @dataProvider unicode
-     * @covers \Uffff\Filter\CheckIfUnicode::__invoke
      */
     public function testCheckIfUnicode(string $value): void
     {
-        $check = new CheckIfUnicode();
+        $assertWellFormedUnicode = new AssertWellFormedUnicode();
 
-        self::assertSame($value, $check($value));
+        self::assertSame($value, $assertWellFormedUnicode($value));
     }
 
-    /**
-     * @covers \Uffff\Filter\CheckIfUnicode::__invoke
-     */
     public function testThrowsExceptionOnInvalidUnicode(): void
     {
-        $check = new CheckIfUnicode();
+        $assertWellFormedUnicode = new AssertWellFormedUnicode();
 
         $this->expectException(InvalidArgumentException::class);
 
         /** @psalm-suppress UnusedMethodCall */
-        $check(chr(0xC0));
+        $assertWellFormedUnicode(chr(0xC0));
     }
 }

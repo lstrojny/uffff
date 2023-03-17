@@ -8,9 +8,9 @@ Installation
 
 To install **Uffff**, use composer and require ``lstrojny/uffff``.
 
-.. code-block:: sh
+.. code-block:: console
 
-    composer require lstrojny/uffff
+    $ composer require lstrojny/uffff
 
 
 Pre-defined filters
@@ -18,6 +18,11 @@ Pre-defined filters
 
 **Uffff** filters are meant to run on user input before further processing. This is often done centrally in the model
 layer of an application.
+
+.. note::
+    **Uffff** assumes a string it processes to be UTF-8. It will correct minor mistakes to make it full valid UTF-8 but
+    it does not convert the encoding. Should you need to support a different encoding, :ref:`bring-your-own-api` and
+    implement encoding conversion before invoking the filter.
 
 .. code-block:: php
 

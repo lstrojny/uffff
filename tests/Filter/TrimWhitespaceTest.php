@@ -9,6 +9,9 @@ use PHPUnit\Framework\TestCase;
 use Uffff\Filter\TrimWhitespace;
 use Webmozart\Assert\Assert;
 
+/**
+ * @covers \Uffff\Filter\TrimWhitespace
+ */
 final class TrimWhitespaceTest extends TestCase
 {
     /**
@@ -63,7 +66,6 @@ final class TrimWhitespaceTest extends TestCase
 
     /**
      * @dataProvider trim
-     * @covers \Uffff\Filter\TrimWhitespace::__invoke
      */
     public function testTrim(string $input, string $output): void
     {

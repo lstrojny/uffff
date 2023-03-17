@@ -5,10 +5,11 @@ Implementing custom filters
 What makes a filter
 -------------------
 
-A filter is a pure function [#]_ that takes a ``string`` and returns a ``string``. There are three ways to implement
+A filter is a *pure function* [#]_ that takes a ``string`` and returns a ``string``. There are three ways to implement
 them.
 
-.. [#] "pure" as in *identical arguments must produce identical return values and the function cannot have side-effects*
+.. [#] "pure" as in *identical arguments must produce identical return values* and *the function cannot have
+    side-effects*
 
 
 Classic function
@@ -85,6 +86,7 @@ To add a custom filter, call ``add`` on the builder object.
 
     $text = $filter('some text');
 
+.. _bring-your-own-api:
 
 Bring your own API
 ------------------

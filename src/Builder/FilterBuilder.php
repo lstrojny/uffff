@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Uffff\Builder;
 
 use Uffff\Contract\Filter;
+use Uffff\Filter\AssertWellFormedUnicode;
 use Uffff\Filter\BalanceBidirectionalMarker;
-use Uffff\Filter\CheckIfUnicode;
 use Uffff\Filter\HarmonizeNewlines;
 use Uffff\Filter\NormalizeForm;
 use Uffff\Filter\StripNullByte;
@@ -78,7 +78,7 @@ final class FilterBuilder
             $shortCircuitEmpty,
             [
                 FlyweightFactory::create(StripNullByte::class),
-                FlyweightFactory::create(CheckIfUnicode::class),
+                FlyweightFactory::create(AssertWellFormedUnicode::class),
                 FlyweightFactory::createWith(
                     NormalizeForm::class,
                     [$this->normalizationForm],
@@ -88,7 +88,7 @@ final class FilterBuilder
                 ...($this->trimWhitespace ? [FlyweightFactory::create(TrimWhitespace::class)] : []),
                 FlyweightFactory::create(BalanceBidirectionalMarker::class),
                 ...$this->filters,
-                FlyweightFactory::create(CheckIfUnicode::class),
+                FlyweightFactory::create(AssertWellFormedUnicode::class),
             ]
         );
 

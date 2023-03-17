@@ -4,42 +4,76 @@ declare(strict_types=1);
 
 namespace Uffff\Tests\Builder;
 
+use Error;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
+use RuntimeException;
 use Uffff\Builder\FlyweightFactory;
-use Uffff\Filter\CheckIfUnicode;
+use Uffff\Filter\AssertWellFormedUnicode;
 
+/**
+ * @covers \Uffff\Builder\FlyweightFactory
+ */
 final class FlyweightFactoryTest extends TestCase
 {
-    /**
-     * @covers \Uffff\Builder\FlyweightFactory
-     */
     public function testCreateReturnsExistingInstance(): void
     {
         self::assertSame(
-            FlyweightFactory::create(CheckIfUnicode::class),
-            FlyweightFactory::create(CheckIfUnicode::class)
+            FlyweightFactory::create(AssertWellFormedUnicode::class),
+            FlyweightFactory::create(AssertWellFormedUnicode::class)
         );
     }
 
-    /**
-     * @covers \Uffff\Builder\FlyweightFactory
-     */
     public function testCreateWithReturnsExistingInstanceIfKeysMatch(): void
     {
         self::assertSame(
-            FlyweightFactory::createWith(CheckIfUnicode::class, [], 'foo'),
-            FlyweightFactory::createWith(CheckIfUnicode::class, [], 'foo')
+            FlyweightFactory::createWith(AssertWellFormedUnicode::class, [], 'foo'),
+            FlyweightFactory::createWith(AssertWellFormedUnicode::class, [], 'foo')
         );
     }
 
-    /**
-     * @covers \Uffff\Builder\FlyweightFactory
-     */
     public function testCreateWithReturnsNewInstanceIfKeysDontMatch(): void
     {
         self::assertNotSame(
-            FlyweightFactory::createWith(CheckIfUnicode::class, [], 'foo'),
-            FlyweightFactory::createWith(CheckIfUnicode::class, [], 'bar')
+            FlyweightFactory::createWith(AssertWellFormedUnicode::class, [], 'foo'),
+            FlyweightFactory::createWith(AssertWellFormedUnicode::class, [], 'bar')
         );
+    }
+
+    public function testClassCannotBeInstantiatedBecauseConstructorVisibilityIsPrivate(): void
+    {
+        $this->expectException(Error::class);
+        /**
+         * @psalm-suppress InaccessibleMethod
+         * @phpstan-ignore-next-line
+         */
+        new FlyweightFactory();
+    }
+
+    public function testClassCannotBeInstantiatedBecauseConstructorThrows(): void
+    {
+        $this->expectException(RuntimeException::class);
+        /**
+         * @psalm-suppress InaccessibleMethod,PossiblyNullFunctionCall
+         * @phpstan-ignore-next-line
+         */
+        (static fn (): mixed => new FlyweightFactory())
+            ->bindTo(null, FlyweightFactory::class)();
+    }
+
+    public function testClassCannotBeClonedBecauseCloneMethodVisibilityIsPrivate(): void
+    {
+        $this->expectException(Error::class);
+        /** @psalm-suppress InvalidClone */
+        clone (new ReflectionClass(FlyweightFactory::class))->newInstanceWithoutConstructor();
+    }
+
+    public function testClassCannotBeClonedBecauseCloneThrows(): void
+    {
+        $this->expectException(RuntimeException::class);
+        /** @psalm-suppress InvalidClone,PossiblyNullFunctionCall */
+        (static fn (): mixed => clone (new ReflectionClass(
+            FlyweightFactory::class
+        ))->newInstanceWithoutConstructor())->bindTo(null, FlyweightFactory::class)();
     }
 }

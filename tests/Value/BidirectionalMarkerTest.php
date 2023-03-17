@@ -6,6 +6,9 @@ namespace Uffff\Value;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \Uffff\Value\BidirectionalMarker
+ */
 final class BidirectionalMarkerTest extends TestCase
 {
     /**
@@ -22,7 +25,6 @@ final class BidirectionalMarkerTest extends TestCase
     }
 
     /**
-     * @covers \Uffff\Value\BidirectionalMarker
      * @dataProvider markers
      */
     public function testCharactersReturnListOfAllMarkerCharacters(BidirectionalMarker $case): void
@@ -30,9 +32,6 @@ final class BidirectionalMarkerTest extends TestCase
         self::assertStringContainsString($case->value, BidirectionalMarker::CHARACTERS);
     }
 
-    /**
-     * @covers \Uffff\Value\BidirectionalMarker::getPopChar
-     */
     public function testPopCharOfUnknownCharacterReturnsNull(): void
     {
         self::assertNull(BidirectionalMarker::getPopChar('a'));
@@ -56,7 +55,6 @@ final class BidirectionalMarkerTest extends TestCase
 
     /**
      * @dataProvider pushAndPopChars
-     * @covers \Uffff\Value\BidirectionalMarker::getPopChar
      */
     public function testPopCharOfPushCharacters(BidirectionalMarker $push, BidirectionalMarker $pop): void
     {
@@ -73,7 +71,6 @@ final class BidirectionalMarkerTest extends TestCase
 
     /**
      * @dataProvider popChars
-     * @covers \Uffff\Value\BidirectionalMarker::getPopChar
      */
     public function testPopCharOfPopCharacters(BidirectionalMarker $pop): void
     {

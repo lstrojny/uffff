@@ -7,11 +7,11 @@ namespace Uffff\Tests\Filter;
 use PHPUnit\Framework\TestCase;
 use Uffff\Filter\StripNullByte;
 
+/**
+ * @covers \Uffff\Filter\StripNullByte
+ */
 final class StripNullByteTest extends TestCase
 {
-    /**
-     * @covers \Uffff\Filter\StripNullByte
-     */
     public function testStripNullBytes(): void
     {
         $stripNullByte = new StripNullByte();

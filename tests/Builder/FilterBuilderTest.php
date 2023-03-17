@@ -15,11 +15,11 @@ use Uffff\Value\Newline;
 use Uffff\Value\NormalizationForm;
 use Webmozart\Assert\Assert;
 
+/**
+ * @covers \Uffff\Builder\FilterBuilder
+ */
 final class FilterBuilderTest extends TestCase
 {
-    /**
-     * @covers \Uffff\Builder\FilterBuilder::build
-     */
     public function testDefaultBuilder(): void
     {
         $filter = (new FilterBuilder())
@@ -28,9 +28,6 @@ final class FilterBuilderTest extends TestCase
         self::assertSame("\u{00E4}foo\n\u{202A}bar\u{202C}", $filter(" \u{0061}\u{0308}foo\r\n\u{202A}bar\n\r "));
     }
 
-    /**
-     * @covers \Uffff\Builder\FilterBuilder::normalizeForm
-     */
     public function testWithCustomNormalization(): void
     {
         $filter = (new FilterBuilder())
@@ -40,9 +37,6 @@ final class FilterBuilderTest extends TestCase
         self::assertSame("\u{0061}\u{0308}", $filter("\u{00E4}"));
     }
 
-    /**
-     * @covers \Uffff\Builder\FilterBuilder::trimWhitespace
-     */
     public function testWithoutTrimWhitespace(): void
     {
         $filter = (new FilterBuilder())
@@ -52,9 +46,6 @@ final class FilterBuilderTest extends TestCase
         self::assertSame(' value ', $filter(' value '));
     }
 
-    /**
-     * @covers \Uffff\Builder\FilterBuilder::harmonizeNewlines
-     */
     public function testWithCustomNewlines(): void
     {
         $filter = (new FilterBuilder())
@@ -64,9 +55,6 @@ final class FilterBuilderTest extends TestCase
         self::assertSame("foo\r\nbar", $filter("foo\nbar"));
     }
 
-    /**
-     * @covers \Uffff\Builder\FilterBuilder::add
-     */
     public function testRegisterCustomFilter(): void
     {
         $filter = (new FilterBuilder())
@@ -77,7 +65,6 @@ final class FilterBuilderTest extends TestCase
     }
 
     /**
-     * @covers \Uffff\Builder\FilterBuilder
      * @group expensive
      */
     public function testPropertyBasedTest(): void
@@ -138,7 +125,7 @@ final class FilterBuilderTest extends TestCase
                 $spaceLike = IntlChar::isspace($dec) || IntlChar::iscntrl($dec);
 
                 $result = ($spaceLike && $output === '') ||
-                    (! normalizer_is_normalized($char) && $output === normalizer_normalize($char))
+                    (!normalizer_is_normalized($char) && $output === normalizer_normalize($char))
                     || ($bidiFormat && $output === $char . "\u{202C}")
                     || ($bidiIsolate && $output === $char . "\u{2069}")
                     || ($bidiPop && $output === '')
@@ -156,7 +143,8 @@ final class FilterBuilderTest extends TestCase
                 );
 
                 return $result;
-            }
+            },
+            500_000
         );
 
         $this->assertThat($property, PropertyConstraint::check(500_000));

@@ -15,7 +15,7 @@ use Webmozart\Assert\Assert;
 readonly final class HarmonizeNewlines implements Filter
 {
     // Order matters, Windows must come first
-    private const REGEX = '/(?:' . Newline::WINDOWS->value . '|' . Newline::MAC->value . '|' . Newline::UNIX->value . ')/';
+    private const ANY_NEWLINE = '/(?:' . Newline::WINDOWS->value . '|' . Newline::MAC->value . '|' . Newline::UNIX->value . ')/';
 
     public function __construct(
         private Newline $newline
@@ -27,7 +27,7 @@ readonly final class HarmonizeNewlines implements Filter
      */
     public function __invoke(string $text): string
     {
-        $harmonized = preg_replace(self::REGEX, $this->newline->value, $text);
+        $harmonized = preg_replace(self::ANY_NEWLINE, $this->newline->value, $text);
 
         Assert::string($harmonized, 'Cannot standardize newlines in "%s"');
 
