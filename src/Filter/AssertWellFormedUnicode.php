@@ -13,7 +13,7 @@ use Webmozart\Assert\Assert;
  */
 readonly final class AssertWellFormedUnicode implements Filter
 {
-    private const REGEX = '/^.*$/us';
+    private const ALL_VALID_CODEPOINTS = '/^.*$/us';
 
     /**
      * @phpstan-pure
@@ -21,7 +21,7 @@ readonly final class AssertWellFormedUnicode implements Filter
     public function __invoke(string $text): string
     {
         Assert::notFalse(
-            preg_match(self::REGEX, $text),
+            preg_match(self::ALL_VALID_CODEPOINTS, $text),
             sprintf('Value "%s" (%s) contains non-unicode characters', $text, bin2hex($text))
         );
 

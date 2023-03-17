@@ -16,14 +16,14 @@ readonly final class TrimWhitespace implements Filter
 {
     private const WHITESPACE = '(?![' . BidirectionalMarker::CHARACTERS . '])[\p{Zs}\p{Cc}]+';
 
-    private const REGEX = '/^' . self::WHITESPACE . '|' . self::WHITESPACE . '$/u';
+    private const ANY_LEADING_OR_TRAILING_WHITESPACE = '/^' . self::WHITESPACE . '|' . self::WHITESPACE . '$/u';
 
     /**
      * @phpstan-pure
      */
     public function __invoke(string $text): string
     {
-        $trimmed = preg_replace(self::REGEX, '', $text);
+        $trimmed = preg_replace(self::ANY_LEADING_OR_TRAILING_WHITESPACE, '', $text);
 
         Assert::string($trimmed, sprintf('Value "%s" cannot be trimmed', $text));
 
