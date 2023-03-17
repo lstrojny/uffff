@@ -11,7 +11,7 @@ use Webmozart\Assert\Assert;
  * @psalm-immutable
  * @internal
  */
-readonly final class CheckIfUnicode implements Filter
+readonly final class AssertWellFormedUnicode implements Filter
 {
     private const REGEX = '/^.*$/us';
 

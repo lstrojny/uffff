@@ -1,8 +1,8 @@
-Welcome to Uffff’s documentation!
-=================================
+Uffff – *Unicode processing made trivial*!
+==========================================
 
 **Uffff**, pronounced as *oof* (/uːf/), the sound one makes when realizing the amount of work necessary to properly
-process unicode.
+process unicode. It’s also a unicode-speak play on the unicode code point ``U+ffff``.
 
 Processing user-supplied unicode text correctly is surprisingly difficult. Normalization to a well-known form is
 required, balancing opening directional markers, stripping null bytes, potentially trimming esoteric whitespaces,

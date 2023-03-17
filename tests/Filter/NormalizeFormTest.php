@@ -8,6 +8,9 @@ use PHPUnit\Framework\TestCase;
 use Uffff\Filter\NormalizeForm;
 use Uffff\Value\NormalizationForm;
 
+/**
+ * @covers \Uffff\Filter\NormalizeForm
+ */
 final class NormalizeFormTest extends TestCase
 {
     /**
@@ -24,7 +27,6 @@ final class NormalizeFormTest extends TestCase
 
     /**
      * @dataProvider nfc
-     * @covers \Uffff\Filter\NormalizeForm
      */
     public function testNfcNormalization(string $input, string $output): void
     {
@@ -35,7 +37,6 @@ final class NormalizeFormTest extends TestCase
 
     /**
      * @dataProvider nfc
-     * @covers \Uffff\Filter\NormalizeForm
      */
     public function testNfdNormalization(string $output, string $input): void
     {

@@ -9,6 +9,9 @@ use PHPUnit\Framework\TestCase;
 use Uffff\Filter\BalanceBidirectionalMarker;
 use Webmozart\Assert\Assert;
 
+/**
+ * @covers \Uffff\Filter\BalanceBidirectionalMarker
+ */
 final class BalanceBidirectionalMarkerTest extends TestCase
 {
     /**
@@ -90,7 +93,6 @@ final class BalanceBidirectionalMarkerTest extends TestCase
     }
 
     /**
-     * @covers \Uffff\Filter\BalanceBidirectionalMarker::__invoke
      * @dataProvider markers
      */
     public function testBidirectionalMarkersAreClosed(string $input, string $output): void

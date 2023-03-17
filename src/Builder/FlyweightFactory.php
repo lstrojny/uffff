@@ -5,6 +5,7 @@ declare(strict_types=1);
 
 namespace Uffff\Builder;
 
+use RuntimeException;
 use Uffff\Contract\Filter;
 use Webmozart\Assert\Assert;
 
@@ -19,18 +20,19 @@ final class FlyweightFactory
     private static array $registry = [];
 
     /**
-     * @psalm-suppress UnusedConstructor
-     * @codeCoverageIgnore
+     * Private constructor - class is not meant to be instantiated
      */
     private function __construct()
     {
+        throw new RuntimeException('Class cannot be instantiated');
     }
 
     /**
-     * @codeCoverageIgnore
+     * Class is not meant to be cloned
      */
     private function __clone()
     {
+        throw new RuntimeException('Class cannot be cloned');
     }
 
     /**

@@ -8,6 +8,9 @@ use PHPUnit\Framework\TestCase;
 use Uffff\Filter\HarmonizeNewlines;
 use Uffff\Value\Newline;
 
+/**
+ * @covers \Uffff\Filter\HarmonizeNewlines
+ */
 final class HarmonizeNewlinesTest extends TestCase
 {
     /**
@@ -72,7 +75,6 @@ final class HarmonizeNewlinesTest extends TestCase
 
     /**
      * @dataProvider newlines
-     * @covers \Uffff\Filter\HarmonizeNewlines
      */
     public function testHarmonizeNewlines(Newline $newline, string $input, string $output): void
     {

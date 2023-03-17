@@ -1,4 +1,4 @@
-# Uffff - Filter unicode user input
+# Uffff - *Unicode processing made trivial*!
 [![CI](https://github.com/lstrojny/uffff/actions/workflows/ci.yml/badge.svg)](https://github.com/lstrojny/uffff/actions/workflows/ci.yml) [![Documentation Status](https://readthedocs.org/projects/uffff/badge/?version=latest)](https://uffff.readthedocs.io/en/latest/?badge=latest)
 
 Properly processing unicode user input is surprisingly tricky:
@@ -12,7 +12,7 @@ Properly processing unicode user input is surprisingly tricky:
 With **Uffff** the problem is reduced to:
 
 ```php
-$good = Ufff\unicode($bad);
+$good = Uffff\unicode($bad);
 ```
 
 [Read the docs](https://uffff.readthedocs.io/) for learn more

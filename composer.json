@@ -53,7 +53,8 @@
         ],
         "style": "ecs check",
         "check": "@parallel test static-analysis style",
-        "fmt": "@style --fix"
+        "format": "@style --fix",
+        "docs": "SOURCE_DATE_EPOCH=`git log -1 --format=%ct` sphinx-build -M html docs build/docs"
     },
     "config": {
         "allow-plugins": {
