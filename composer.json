@@ -47,15 +47,23 @@
             "ifCi() { test \"$CI\" && echo \"$1\" || echo \"$2\"; }; phpunit `ifCi '--teamcity --group default,expensive'`",
             "coverage-check build/coverage/clover.xml 100"
         ],
+        "prepare-build": [
+            "mkdir -p build"
+        ],
         "static-analysis": "@parallel phpstan psalm",
         "phpstan": "phpstan --memory-limit=1G",
         "psalm": [
-            "mkdir -p build",
+            "@prepare-build",
             "ifCi() { test \"$CI\" && echo \"$1\" || echo \"$2\"; }; psalm --show-info=true `ifCi --output-format=github`"
         ],
         "style": "ecs check",
         "check": "@parallel test static-analysis style",
         "format": "@style --fix",
+        "test-mutations": [
+            "@prepare-build",
+            "test -f build/infection.phar || curl -Lf https://github.com/infection/infection/releases/download/0.26.19/infection.phar > build/infection.phar",
+            "php build/infection.phar"
+        ],
         "docs": "SOURCE_DATE_EPOCH=`git log -1 --format=%ct` sphinx-build -M html docs build/docs"
     },
     "config": {

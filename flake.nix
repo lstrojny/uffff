@@ -28,6 +28,8 @@
             "simplexml"
             "opcache"
             "curl"
+            "zlib"
+            "ctype"
           ];
 
           extraConfig = ''

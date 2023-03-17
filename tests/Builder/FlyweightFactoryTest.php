@@ -10,6 +10,9 @@ use ReflectionClass;
 use RuntimeException;
 use Uffff\Builder\FlyweightFactory;
 use Uffff\Filter\AssertWellFormedUnicode;
+use Uffff\Filter\StripNullByte;
+use Uffff\Tests\Builder\Fixture\Overlapping;
+use Uffff\Tests\Builder\Fixture\OverlappingClassName;
 
 /**
  * @covers \Uffff\Builder\FlyweightFactory
@@ -24,6 +27,22 @@ final class FlyweightFactoryTest extends TestCase
         );
     }
 
+    public function testCreateReturnsDifferentInstancesForDifferentClasses(): void
+    {
+        self::assertNotSame(
+            FlyweightFactory::create(AssertWellFormedUnicode::class),
+            FlyweightFactory::create(StripNullByte::class)
+        );
+    }
+
+    public function testDoesNotConfuseClassNames(): void
+    {
+        self::assertNotSame(
+            FlyweightFactory::createWith(OverlappingClassName::class, [], ''),
+            FlyweightFactory::createWith(Overlapping::class, [], 'ClassName'),
+        );
+    }
+
     public function testCreateWithReturnsExistingInstanceIfKeysMatch(): void
     {
         self::assertSame(
@@ -35,8 +54,8 @@ final class FlyweightFactoryTest extends TestCase
     public function testCreateWithReturnsNewInstanceIfKeysDontMatch(): void
     {
         self::assertNotSame(
-            FlyweightFactory::createWith(AssertWellFormedUnicode::class, [], 'foo'),
-            FlyweightFactory::createWith(AssertWellFormedUnicode::class, [], 'bar')
+            FlyweightFactory::createWith(StripNullByte::class, [], 'foo'),
+            FlyweightFactory::createWith(StripNullByte::class, [], 'bar')
         );
     }
 

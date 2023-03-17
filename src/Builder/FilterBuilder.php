@@ -85,7 +85,7 @@ final class FilterBuilder
                     $this->normalizationForm->name
                 ),
                 FlyweightFactory::createWith(HarmonizeNewlines::class, [$this->newline], $this->newline->name),
-                ...($this->trimWhitespace ? [FlyweightFactory::create(TrimWhitespace::class)] : []),
+                ...$this->trimWhitespace ? [FlyweightFactory::create(TrimWhitespace::class)] : [],
                 FlyweightFactory::create(BalanceBidirectionalMarker::class),
                 ...$this->filters,
                 FlyweightFactory::create(AssertWellFormedUnicode::class),
