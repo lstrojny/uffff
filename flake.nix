@@ -2,7 +2,8 @@
   description = "ufff";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # Use fork until https://github.com/NixOS/nixpkgs/pull/221845 is merged
+    nixpkgs.url = "github:lstrojny/nixpkgs/fix-php-wrapper";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
