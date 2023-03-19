@@ -158,6 +158,6 @@ final class FilterBuilderTest extends TestCase
             500_000
         );
 
-        $this->assertThat($property, PropertyConstraint::check(500_000));
+        self::assertThat($property, PropertyConstraint::check(500_000));
     }
 }
