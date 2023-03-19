@@ -15,7 +15,7 @@
       let
         pkgs = import nixpkgs { inherit system; };
 
-        php = (nix-shell.api.makePhp pkgs {
+        php = (nix-shell.api.makePhp system {
           php = "php82";
           withExtensions = [
             "xdebug"
