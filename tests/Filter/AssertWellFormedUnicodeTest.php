@@ -7,6 +7,7 @@ namespace Uffff\Tests\Filter;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Uffff\Filter\AssertWellFormedUnicode;
+use Uffff\Value\ValueContext;
 
 /**
  * @covers \Uffff\Filter\AssertWellFormedUnicode
@@ -31,16 +32,17 @@ final class AssertWellFormedUnicodeTest extends TestCase
      */
     public function testCheckIfUnicode(string $value): void
     {
-        $assertWellFormedUnicode = new AssertWellFormedUnicode();
+        $assertWellFormedUnicode = new AssertWellFormedUnicode(ValueContext::INPUT);
 
         self::assertSame($value, $assertWellFormedUnicode($value));
     }
 
     public function testThrowsExceptionOnInvalidUnicode(): void
     {
-        $assertWellFormedUnicode = new AssertWellFormedUnicode();
+        $assertWellFormedUnicode = new AssertWellFormedUnicode(ValueContext::OUTPUT);
 
         $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageMatches('/Output value.*\(c0\) contains non-unicode characters/');
 
         /** @psalm-suppress UnusedMethodCall */
         $assertWellFormedUnicode(chr(0xC0));

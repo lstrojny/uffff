@@ -13,6 +13,7 @@ use Uffff\Filter\StripNullByte;
 use Uffff\Filter\TrimWhitespace;
 use Uffff\Value\Newline;
 use Uffff\Value\NormalizationForm;
+use Uffff\Value\ValueContext;
 
 /**
  * @phpstan-import-type FilterFn from Filter
@@ -77,7 +78,11 @@ final class FilterBuilder
             $shortCircuitEmpty,
             [
                 FlyweightFactory::create(StripNullByte::class),
-                FlyweightFactory::create(AssertWellFormedUnicode::class),
+                FlyweightFactory::createWith(
+                    AssertWellFormedUnicode::class,
+                    [ValueContext::INPUT],
+                    ValueContext::INPUT->name
+                ),
                 FlyweightFactory::createWith(
                     NormalizeForm::class,
                     [$this->normalizationForm],
@@ -87,7 +92,11 @@ final class FilterBuilder
                 ...$this->trimWhitespace ? [FlyweightFactory::create(TrimWhitespace::class)] : [],
                 FlyweightFactory::create(BalanceBidirectionalMarker::class),
                 ...$this->filters,
-                FlyweightFactory::create(AssertWellFormedUnicode::class),
+                FlyweightFactory::createWith(
+                    AssertWellFormedUnicode::class,
+                    [ValueContext::OUTPUT],
+                    ValueContext::OUTPUT->name
+                ),
             ]
         );
 

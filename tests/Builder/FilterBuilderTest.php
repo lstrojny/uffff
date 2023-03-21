@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Uffff\Tests\Builder;
 
 use IntlChar;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use QuickCheck\Generator;
 use QuickCheck\PHPUnit\PropertyConstraint;
@@ -69,10 +70,32 @@ final class FilterBuilderTest extends TestCase
     {
         $filter = (new FilterBuilder())
             ->add(static fn () => '')
-            ->add(static fn () => throw new RuntimeException('Should not happen'))
+            ->add(static fn () => throw new RuntimeException('Unreachable'))
             ->build();
 
         self::assertSame('', $filter('something'));
+    }
+
+    public function testThrowsOnInvalidUnicodeInput(): void
+    {
+        $filter = (new FilterBuilder())
+            ->add(static fn () => throw new RuntimeException('Custom filters are unreachable because it throws before'))
+            ->build();
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageMatches('/Input value.*contains non-unicode characters/');
+        $filter("\u{DC00}");
+    }
+
+    public function testThrowsOnInvalidUnicodeOutputFromCustomFilters(): void
+    {
+        $filter = (new FilterBuilder())
+            ->add(static fn () => "\u{DC00}")
+            ->build();
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessageMatches('/Output value.*contains non-unicode characters/');
+        $filter('something');
     }
 
     /**

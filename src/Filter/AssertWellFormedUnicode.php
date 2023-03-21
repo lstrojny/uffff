@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Uffff\Filter;
 
 use Uffff\Contract\Filter;
+use Uffff\Value\ValueContext;
 use Webmozart\Assert\Assert;
 
 /**
@@ -15,6 +16,11 @@ readonly final class AssertWellFormedUnicode implements Filter
 {
     private const ALL_VALID_CODEPOINTS = '/^.*$/us';
 
+    public function __construct(
+        private ValueContext $context
+    ) {
+    }
+
     /**
      * @phpstan-pure
      */
@@ -22,7 +28,10 @@ readonly final class AssertWellFormedUnicode implements Filter
     {
         Assert::notFalse(
             preg_match(self::ALL_VALID_CODEPOINTS, $text),
-            sprintf('Value "%s" (%s) contains non-unicode characters', $text, bin2hex($text))
+            sprintf('%s value "%s" (%s) contains non-unicode characters', match ($this->context) {
+                ValueContext::INPUT => 'Input',
+                ValueContext::OUTPUT => 'Output',
+            }, $text, bin2hex($text))
         );
 
         return $text;
