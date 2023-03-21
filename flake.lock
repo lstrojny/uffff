@@ -74,7 +74,9 @@
       "inputs": {
         "flake-parts": "flake-parts_2",
         "nix-phps": "nix-phps",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1679279134,
@@ -144,22 +146,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1679198465,
-        "narHash": "sha256-VfXpHpniNWgg7pBzxb20pRX7kqn80LApPDQYTReiFCw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "5a05160f7671434e1c833b1b01284b876e04eca4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1679259875,
         "narHash": "sha256-yM9ukFQ27dEIOfuV+bdZjYHlfTsQ/WH33OeUePFwckA=",
         "owner": "lstrojny",
@@ -178,7 +164,7 @@
       "inputs": {
         "flake-parts": "flake-parts",
         "nix-shell": "nix-shell",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "utils": {

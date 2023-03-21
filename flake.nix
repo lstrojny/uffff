@@ -5,6 +5,7 @@
     # Use fork until https://github.com/NixOS/nixpkgs/pull/221845 is merged
     nixpkgs.url = "github:lstrojny/nixpkgs/fix-php-wrapper";
     nix-shell.url = "github:loophp/nix-shell";
+    nix-shell.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, flake-parts, ... }:
@@ -50,12 +51,8 @@
           devShells.default = pkgs.mkShellNoCC {
             name = "ufff";
 
-            buildInputs = [
-              php
-              php.packages.composer
-              pkgs.sphinx
-              (pkgs.python3.withPackages (p: with p; [ sphinx-rtd-theme ]))
-            ];
+            buildInputs =
+              [ php php.packages.composer pkgs.sphinx (pkgs.python3.withPackages (p: with p; [ sphinx-rtd-theme ])) ];
           };
         };
     };
