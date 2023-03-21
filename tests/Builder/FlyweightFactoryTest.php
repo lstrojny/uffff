@@ -9,8 +9,8 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use RuntimeException;
 use Uffff\Builder\FlyweightFactory;
-use Uffff\Filter\AssertWellFormedUnicode;
 use Uffff\Filter\StripNullByte;
+use Uffff\Filter\TrimWhitespace;
 use Uffff\Tests\Builder\Fixture\Overlapping;
 use Uffff\Tests\Builder\Fixture\OverlappingClassName;
 
@@ -22,15 +22,15 @@ final class FlyweightFactoryTest extends TestCase
     public function testCreateReturnsExistingInstance(): void
     {
         self::assertSame(
-            FlyweightFactory::create(AssertWellFormedUnicode::class),
-            FlyweightFactory::create(AssertWellFormedUnicode::class)
+            FlyweightFactory::create(StripNullByte::class),
+            FlyweightFactory::create(StripNullByte::class)
         );
     }
 
     public function testCreateReturnsDifferentInstancesForDifferentClasses(): void
     {
         self::assertNotSame(
-            FlyweightFactory::create(AssertWellFormedUnicode::class),
+            FlyweightFactory::create(TrimWhitespace::class),
             FlyweightFactory::create(StripNullByte::class)
         );
     }
@@ -46,8 +46,8 @@ final class FlyweightFactoryTest extends TestCase
     public function testCreateWithReturnsExistingInstanceIfKeysMatch(): void
     {
         self::assertSame(
-            FlyweightFactory::createWith(AssertWellFormedUnicode::class, [], 'foo'),
-            FlyweightFactory::createWith(AssertWellFormedUnicode::class, [], 'foo')
+            FlyweightFactory::createWith(TrimWhitespace::class, [], 'foo'),
+            FlyweightFactory::createWith(TrimWhitespace::class, [], 'foo')
         );
     }
 
