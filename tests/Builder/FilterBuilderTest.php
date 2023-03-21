@@ -70,7 +70,7 @@ final class FilterBuilderTest extends TestCase
     {
         $filter = (new FilterBuilder())
             ->add(static fn () => '')
-            ->add(static fn () => throw new RuntimeException('Unreachable'))
+            ->add(static fn () => throw new RuntimeException('Unreachable because empty string short circuits'))
             ->build();
 
         self::assertSame('', $filter('something'));
