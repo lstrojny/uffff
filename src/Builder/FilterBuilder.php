@@ -71,7 +71,13 @@ final class FilterBuilder
              * @param FilterFn $filter
              * @return FilterFn
              */
-            static fn (callable $filter): callable => static fn (string $text): string => $text === '' ? $text : $filter($text);
+            static function (callable $filter): callable {
+                /**
+                 * @todo https://github.com/phpstan/phpstan/issues/3770
+                 * @var FilterFn $filter
+                 */
+                return static fn (string $text): string => $text === '' ? $text : $filter($text);
+            };
 
         $filters = array_map(
             $shortCircuitEmpty,
