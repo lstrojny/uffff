@@ -1,5 +1,8 @@
 parameters:
     level: 9
+    checkImplicitMixed: true
+    checkUninitializedProperties: true
+    checkBenevolentUnionTypes: true
     paths:
         - .
     excludePaths:

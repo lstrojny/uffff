@@ -28,7 +28,10 @@ readonly final class BalanceBidirectionalMarker implements Filter
 
         $cleaned = preg_replace_callback(
             self::ANY_BIDIRECTIONAL_MARKER_CHARACTERS,
-            static function ($match) use (&$pops) {
+            /**
+             * @param array<array-key, string> $match
+             */
+            static function (array $match) use (&$pops): string {
                 /** @var array<string, int> $pops */
                 [$marker] = $match;
                 $pop = BidirectionalMarker::getPopChar($marker);
