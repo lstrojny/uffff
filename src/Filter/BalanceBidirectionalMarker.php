@@ -11,7 +11,7 @@ use Uffff\Value\BidirectionalMarker;
  * @psalm-immutable
  * @internal
  */
-readonly final class BalanceBidirectionalMarker implements Filter
+final readonly class BalanceBidirectionalMarker implements Filter
 {
     private const ANY_BIDIRECTIONAL_MARKER_CHARACTERS = '/[' . BidirectionalMarker::CHARACTERS . ']/u';
 

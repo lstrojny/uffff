@@ -10,7 +10,7 @@ use Uffff\Contract\Filter;
  * @psalm-immutable
  * @internal
  */
-readonly final class StripNullByte implements Filter
+final readonly class StripNullByte implements Filter
 {
     private const NULL = "\0";
 

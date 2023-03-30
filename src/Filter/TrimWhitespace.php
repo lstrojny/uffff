@@ -12,7 +12,7 @@ use Webmozart\Assert\Assert;
  * @psalm-immutable
  * @internal
  */
-readonly final class TrimWhitespace implements Filter
+final readonly class TrimWhitespace implements Filter
 {
     private const WHITESPACE = '(?![' . BidirectionalMarker::CHARACTERS . '])[\p{Zs}\p{Cc}]+';
 

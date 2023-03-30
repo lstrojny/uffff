@@ -12,7 +12,7 @@ use Webmozart\Assert\Assert;
  * @psalm-immutable
  * @internal
  */
-readonly final class HarmonizeNewlines implements Filter
+final readonly class HarmonizeNewlines implements Filter
 {
     // Order matters, Windows must come first
     private const ANY_NEWLINE = '/(?:' . Newline::WINDOWS->value . '|' . Newline::MAC->value . '|' . Newline::UNIX->value . ')/';

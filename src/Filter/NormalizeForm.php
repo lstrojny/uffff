@@ -13,7 +13,7 @@ use Webmozart\Assert\Assert;
  * @psalm-immutable
  * @internal
  */
-readonly final class NormalizeForm implements Filter
+final readonly class NormalizeForm implements Filter
 {
     public function __construct(
         private NormalizationForm $form

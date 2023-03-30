@@ -12,7 +12,7 @@ use Webmozart\Assert\Assert;
  * @psalm-immutable
  * @internal
  */
-readonly final class AssertWellFormedUnicode implements Filter
+final readonly class AssertWellFormedUnicode implements Filter
 {
     private const ALL_VALID_CODEPOINTS = '/^.*$/us';
 
