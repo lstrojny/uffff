@@ -2,8 +2,7 @@
   description = "ufff";
 
   inputs = {
-    # Use fork until https://github.com/NixOS/nixpkgs/pull/221845 is merged
-    nixpkgs.url = "github:lstrojny/nixpkgs/fix-php-wrapper";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nix-shell.url = "github:loophp/nix-shell";
     nix-shell.inputs.nixpkgs.follows = "nixpkgs";
   };
