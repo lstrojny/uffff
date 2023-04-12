@@ -10,9 +10,14 @@ use Uffff\Contract\Filter;
 use Webmozart\Assert\Assert;
 
 /**
+ * Factory for filter object
+ *
+ * Acts as a flyweight to avoid unnecessarily duplicating filter objects.
+ *
  * @internal
+ * @phpstan-import-type FilterFn from Filter
  */
-final class FlyweightFactory
+final class FilterFactory
 {
     /**
      * @var array<string, Filter>
@@ -37,10 +42,11 @@ final class FlyweightFactory
 
     /**
      * @template ConcreteFilter of Filter
+     * @psalm-pure
      * @param class-string<ConcreteFilter> $className
-     * @return ConcreteFilter
+     * @return FilterFn
      */
-    public static function create(string $className): object
+    public static function create(string $className): callable
     {
         return self::getOrCreate($className, $className, []);
     }
@@ -48,25 +54,30 @@ final class FlyweightFactory
     /**
      * @template ConcreteFilter of Filter
      * @param class-string<ConcreteFilter> $className
+     * @psalm-pure
      * @param list<mixed> $arguments
-     * @return ConcreteFilter
+     * @return FilterFn
      */
-    public static function createWith(string $className, array $arguments, string $key): object
+    public static function createWith(string $className, array $arguments, string $key): callable
     {
         return self::getOrCreate($className . '$' . $key, $className, $arguments);
     }
 
     /**
      * @template ConcreteFilter of Filter
+     * @psalm-pure
      * @param class-string<ConcreteFilter> $className
      * @param list<mixed> $arguments
      * @return ConcreteFilter
      */
-    private static function getOrCreate(string $registryKey, string $className, array $arguments): object
+    private static function getOrCreate(string $registryKey, string $className, array $arguments): callable
     {
+        /** @psalm-suppress ImpureStaticProperty */
         $instance = self::$registry[$registryKey] ??= new $className(...$arguments);
 
         Assert::isInstanceOf($instance, $className);
+        Assert::isInstanceOf($instance, Filter::class);
+        Assert::isCallable($instance);
 
         return $instance;
     }

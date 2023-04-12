@@ -19,7 +19,7 @@ final readonly class TrimWhitespace implements Filter
     private const ANY_LEADING_OR_TRAILING_WHITESPACE = '/^' . self::WHITESPACE . '|' . self::WHITESPACE . '$/u';
 
     /**
-     * @phpstan-pure
+     * @psalm-pure
      */
     public function __invoke(string $text): string
     {

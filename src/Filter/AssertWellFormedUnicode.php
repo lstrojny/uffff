@@ -21,9 +21,6 @@ final readonly class AssertWellFormedUnicode implements Filter
     ) {
     }
 
-    /**
-     * @phpstan-pure
-     */
     public function __invoke(string $text): string
     {
         Assert::notFalse(

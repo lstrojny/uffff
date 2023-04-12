@@ -15,7 +15,7 @@ final readonly class StripNullByte implements Filter
     private const NULL = "\0";
 
     /**
-     * @phpstan-pure
+     * @psalm-pure
      */
     public function __invoke(string $text): string
     {

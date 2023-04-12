@@ -3,10 +3,15 @@
        xmlns="https://getpsalm.org/schema/config"
        xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
        errorLevel="1"
-       findUnusedPsalmSuppress="true"
        resolveFromConfigFile="true"
+       sealAllMethods="true"
+       sealAllProperties="true"
+       findUnusedPsalmSuppress="true"
        findUnusedBaselineEntry="true"
        findUnusedCode="true"
+       findUnusedVariablesAndParams="true"
+       ensureArrayStringOffsetsExist="true"
+       ensureArrayIntOffsetsExist="true"
        cacheDirectory="build/cache/psalm">
     <projectFiles>
         <directory name="src"/>

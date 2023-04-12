@@ -105,7 +105,7 @@ final class FilterBuilderTest extends TestCase
     {
         $property = Property::forAll(
             [Generator::choose(0x0, 0x10FFFF)],
-            static function (int $dec): bool {
+            static function (int $dec): true {
                 $char = IntlChar::chr($dec);
                 Assert::string($char);
 

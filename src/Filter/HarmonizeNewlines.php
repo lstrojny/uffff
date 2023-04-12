@@ -22,9 +22,6 @@ final readonly class HarmonizeNewlines implements Filter
     ) {
     }
 
-    /**
-     * @phpstan-pure
-     */
     public function __invoke(string $text): string
     {
         $harmonized = preg_replace(self::ANY_NEWLINE, $this->newline->value, $text);

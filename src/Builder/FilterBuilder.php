@@ -63,6 +63,7 @@ final class FilterBuilder
     }
 
     /**
+     * @psalm-mutation-free
      * @return FilterFn
      */
     public function build(): callable
@@ -73,32 +74,31 @@ final class FilterBuilder
              * @return FilterFn
              */
             static function (callable $filter): callable {
-                /**
-                 * @todo https://github.com/phpstan/phpstan/issues/3770
-                 * @var FilterFn $filter
-                 */
-                return static fn (string $text): string => $text === '' ? $text : $filter($text);
+                return static function (string $text) use ($filter): string {
+                    /** @var FilterFn $filter */
+                    return $text === '' ? $text : $filter($text);
+                };
             };
 
         $filters = array_map(
             $shortCircuitEmpty,
             [
-                FlyweightFactory::create(StripNullByte::class),
-                FlyweightFactory::createWith(
+                FilterFactory::create(StripNullByte::class),
+                FilterFactory::createWith(
                     AssertWellFormedUnicode::class,
                     [ValueContext::INPUT],
                     ValueContext::INPUT->name
                 ),
-                FlyweightFactory::createWith(
+                FilterFactory::createWith(
                     NormalizeForm::class,
                     [$this->normalizationForm],
                     $this->normalizationForm->name
                 ),
-                FlyweightFactory::createWith(HarmonizeNewlines::class, [$this->newline], $this->newline->name),
-                ...$this->trimWhitespace ? [FlyweightFactory::create(TrimWhitespace::class)] : [],
-                FlyweightFactory::create(BalanceBidirectionalMarker::class),
+                FilterFactory::createWith(HarmonizeNewlines::class, [$this->newline], $this->newline->name),
+                ...$this->trimWhitespace ? [FilterFactory::create(TrimWhitespace::class)] : [],
+                FilterFactory::create(BalanceBidirectionalMarker::class),
                 ...$this->filters,
-                FlyweightFactory::createWith(
+                FilterFactory::createWith(
                     AssertWellFormedUnicode::class,
                     [ValueContext::OUTPUT],
                     ValueContext::OUTPUT->name

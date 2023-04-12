@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Uffff\Value;
 
 /**
- * @psalm-immutable
  * @internal
+ * @psalm-immutable
  */
 enum ValueContext
 {

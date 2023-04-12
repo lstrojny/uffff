@@ -16,7 +16,7 @@ final readonly class BalanceBidirectionalMarker implements Filter
     private const ANY_BIDIRECTIONAL_MARKER_CHARACTERS = '/[' . BidirectionalMarker::CHARACTERS . ']/u';
 
     /**
-     * @phpstan-pure
+     * @psalm-pure
      */
     public function __invoke(string $text): string
     {

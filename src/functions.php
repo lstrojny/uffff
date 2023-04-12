@@ -7,12 +7,15 @@ namespace Uffff;
 use Uffff\Builder\FilterBuilder;
 
 /**
- * @phpstan-pure
+ * @psalm-pure
  * @psalm-immutable
  */
 function unicode(string $text): string
 {
-    /** @var (callable(string): string)|null $filter */
+    /**
+     * @psalm-suppress ImpureStaticVariable
+     * @var (pure-callable(string): string)|null $filter
+     */
     static $filter = null;
 
     $filter ??= (new FilterBuilder())
@@ -22,7 +25,7 @@ function unicode(string $text): string
 }
 
 /**
- * @phpstan-pure
+ * @psalm-pure
  * @psalm-immutable
  * @return ($text is null ? null : string)
  */
@@ -36,14 +39,18 @@ function unicode_or_null(?string $text): ?string
 }
 
 /**
- * @phpstan-pure
+ * @psalm-pure
  * @psalm-immutable
  */
 function unicode_untrimmed(string $text): string
 {
-    /** @var (callable(string): string)|null $filter */
+    /**
+     * @psalm-suppress ImpureStaticVariable
+     * @var (pure-callable(string): string)|null $filter
+     */
     static $filter = null;
 
+    /** @psalm-suppress ImpureMethodCall */
     $filter ??= (new FilterBuilder())
         ->trimWhitespace(false)
         ->build();
@@ -52,7 +59,7 @@ function unicode_untrimmed(string $text): string
 }
 
 /**
- * @phpstan-pure
+ * @psalm-pure
  * @psalm-immutable
  * @return ($text is null ? null : string)
  */
