@@ -68,20 +68,8 @@ final class FilterBuilder
      */
     public function build(): callable
     {
-        $shortCircuitEmpty =
-            /**
-             * @param FilterFn $filter
-             * @return FilterFn
-             */
-            static function (callable $filter): callable {
-                return static function (string $text) use ($filter): string {
-                    /** @var FilterFn $filter */
-                    return $text === '' ? $text : $filter($text);
-                };
-            };
-
         $filters = array_map(
-            $shortCircuitEmpty,
+            [self::class, 'shortCircuitIfEmpty'],
             [
                 FilterFactory::create(StripNullByte::class),
                 FilterFactory::createWith(
@@ -106,7 +94,7 @@ final class FilterBuilder
             ]
         );
 
-        return $shortCircuitEmpty(
+        return self::shortCircuitIfEmpty(
             static fn (string $text): string => array_reduce(
                 $filters,
                 /**
@@ -116,5 +104,15 @@ final class FilterBuilder
                 $text
             )
         );
+    }
+
+    /**
+     * @psalm-pure
+     * @param FilterFn $filter
+     * @return FilterFn
+     */
+    private static function shortCircuitIfEmpty(callable $filter): callable
+    {
+        return static fn (string $text): string => $text === '' ? $text : $filter($text);
     }
 }
