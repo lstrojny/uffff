@@ -15,4 +15,4 @@ With **Uffff** the problem is reduced to:
 $good = Uffff\unicode($bad);
 ```
 
-[Read the docs](https://uffff.readthedocs.io/) for learn more
+[Read the docs](https://uffff.readthedocs.io/) to learn more.
