@@ -13,7 +13,7 @@
         "ext-xdebug": "*",
         "phpunit/phpunit": "^10.0",
         "phpstan/phpstan": "^1.10",
-        "vimeo/psalm": "5.9.0",
+        "vimeo/psalm": "^5.9.0",
         "psalm/plugin-phpunit": "^0.18.4",
         "symplify/easy-coding-standard": "^11.2",
         "veewee/composer-run-parallel": "^1.2",
