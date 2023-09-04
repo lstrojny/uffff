@@ -13,7 +13,7 @@
 
       perSystem = { config, self', inputs', pkgs, system, lib, ... }:
         let
-          php = version:
+          makePhp = version:
             pkgs.api.buildPhpFromComposer {
               src = inputs.self;
               php = pkgs."php${version}";
@@ -28,16 +28,23 @@
                 }))
               ];
             };
-        in rec {
+          phpVersions = [ "8.2" "8.3" ];
+          makeShell = version:
+            let phpDrv = makePhp (builtins.replaceStrings [ "." ] [ "" ] version);
+            in {
+              name = "php${version}";
+              value = pkgs.mkShellNoCC { buildInputs = [ phpDrv phpDrv.packages.composer ]; };
+            };
+          devShells = builtins.listToAttrs (map makeShell phpVersions);
+          devShellsWithDefault = devShells // { default = devShells."php${builtins.head phpVersions}"; };
+        in {
           _module.args.pkgs = import self.inputs.nixpkgs {
             inherit system;
             overlays = [ inputs.nix-php-composer-builder.overlays.default ];
             config.allowUnfree = true;
           };
 
-          devShells.php82 = pkgs.mkShellNoCC { buildInputs = [ (php "82") (php "82").packages.composer ]; };
-          devShells.php83 = pkgs.mkShellNoCC { buildInputs = [ (php "83") (php "83").packages.composer ]; };
-          devShells.default = devShells.php82;
+          devShells = devShellsWithDefault;
         };
     };
 }
