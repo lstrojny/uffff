@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2fd417d6f424d92702fa901e8df1e3b1",
+    "content-hash": "91f480d6ae485ae003cf9b34624375e0",
     "packages": [
         {
             "name": "webmozart/assert",
@@ -4471,5 +4471,12 @@
     "platform-dev": {
         "ext-xdebug": "*"
     },
+<<<<<<< HEAD
     "plugin-api-version": "2.6.0"
+=======
+    "platform-overrides": {
+        "php": "8.2.9"
+    },
+    "plugin-api-version": "2.3.0"
+>>>>>>> f9f1bda (Fixate platform)
 }

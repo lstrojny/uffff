@@ -28,15 +28,16 @@
                 }))
               ];
             };
-        in {
+        in rec {
           _module.args.pkgs = import self.inputs.nixpkgs {
             inherit system;
             overlays = [ inputs.nix-php-composer-builder.overlays.default ];
             config.allowUnfree = true;
           };
 
-          devShells.default = pkgs.mkShellNoCC { buildInputs = [ (php "82") (php "82").packages.composer ]; };
+          devShells.php82 = pkgs.mkShellNoCC { buildInputs = [ (php "82") (php "82").packages.composer ]; };
           devShells.php83 = pkgs.mkShellNoCC { buildInputs = [ (php "83") (php "83").packages.composer ]; };
+          devShells.default = devShells.php82;
         };
     };
 }
