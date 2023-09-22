@@ -15,7 +15,7 @@ jobs:
     name: "PHP ${{ matrix.php-version }} → ${{ matrix.check }}"
 
     steps:
-      - uses: actions/checkout@v4.0.0
+      - uses: actions/checkout@v4.1.0
       - uses: shivammathur/setup-php@2.26.0
         with:
           php-version: ${{ matrix.php-version }}
