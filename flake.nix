@@ -50,8 +50,17 @@
           devShells.default = pkgs.mkShellNoCC {
             name = "ufff";
 
-            buildInputs =
-              [ php php.packages.composer pkgs.sphinx (pkgs.python3.withPackages (p: with p; [ sphinx-rtd-theme ])) ];
+            buildInputs = [ php php.packages.composer pkgs.sphinx (pkgs.python3.withPackages (p: with p; [ pip ])) ];
+
+            shellHook = ''
+              # Tells pip to put packages into $PIP_PREFIX instead of the usual locations.
+              # See https://pip.pypa.io/en/stable/user_guide/#environment-variables.
+              export PIP_PREFIX=$(pwd)/build/pip_packages
+              export PYTHONPATH="$PIP_PREFIX/${pkgs.python3.sitePackages}:$PYTHONPATH"
+              export PATH="$PIP_PREFIX/bin:$PATH"
+              unset SOURCE_DATE_EPOCH
+              pip install -r docs/requirements.txt
+            '';
           };
         };
     };
