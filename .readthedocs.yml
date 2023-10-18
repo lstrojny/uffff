@@ -9,6 +9,7 @@ build:
   tools:
     python: "3.10"
 
- python:
-    install:
+python:
+  install:
     - requirements: docs/requirements.txt
+
