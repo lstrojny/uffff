@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.4/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          cacheDirectory="build/cache/phpunit"
          executionOrder="depends,defects"
@@ -24,8 +24,10 @@
             <html outputDirectory="build/coverage/html"/>
             <clover outputFile="build/coverage/clover.xml"/>
         </report>
+    </coverage>
+    <source>
         <include>
             <directory suffix=".php">src</directory>
         </include>
-    </coverage>
+    </source>
 </phpunit>

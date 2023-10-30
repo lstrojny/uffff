@@ -63,7 +63,7 @@
         "format": "@style --fix",
         "test-mutations": [
             "@prepare-build",
-            "test -f build/infection.phar || curl -Lf https://github.com/infection/infection/releases/download/0.26.19/infection.phar > build/infection.phar",
+            "test -f build/infection.phar || curl -Lf https://github.com/infection/infection/releases/download/0.27.0/infection.phar > build/infection.phar",
             "php build/infection.phar"
         ],
         "docs": "SOURCE_DATE_EPOCH=`git log -1 --format=%ct` sphinx-build -M html docs build/docs"
