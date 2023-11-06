@@ -4259,21 +4259,21 @@
         },
         {
             "name": "veewee/composer-run-parallel",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/veewee/composer-run-parallel.git",
-                "reference": "e6908df2e7fa27140fbccb955fe8da8d8f176d37"
+                "reference": "60f357260cac77f3cad7050eceacebd3fdd907af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/veewee/composer-run-parallel/zipball/e6908df2e7fa27140fbccb955fe8da8d8f176d37",
-                "reference": "e6908df2e7fa27140fbccb955fe8da8d8f176d37",
+                "url": "https://api.github.com/repos/veewee/composer-run-parallel/zipball/60f357260cac77f3cad7050eceacebd3fdd907af",
+                "reference": "60f357260cac77f3cad7050eceacebd3fdd907af",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "~2.0",
-                "php": "^7.4 || ~8.0.0 || ~8.1.0 || ~8.2.0 "
+                "php": "^7.4 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0"
             },
             "require-dev": {
                 "composer/composer": "^2.0",
@@ -4309,7 +4309,7 @@
             ],
             "support": {
                 "issues": "https://github.com/veewee/composer-run-parallel/issues",
-                "source": "https://github.com/veewee/composer-run-parallel/tree/1.2.0"
+                "source": "https://github.com/veewee/composer-run-parallel/tree/1.3.0"
             },
             "funding": [
                 {
@@ -4317,7 +4317,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-11-04T08:34:58+00:00"
+            "time": "2023-11-04T12:20:20+00:00"
         },
         {
             "name": "vimeo/psalm",
@@ -4443,5 +4443,5 @@
     "platform-dev": {
         "ext-xdebug": "*"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
