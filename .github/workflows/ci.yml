@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: shivammathur/setup-php@2.27.0
+      - uses: shivammathur/setup-php@2.27.1
         with:
           php-version: ${{ matrix.php-version }}
           coverage: xdebug
