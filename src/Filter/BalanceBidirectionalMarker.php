@@ -26,13 +26,13 @@ final readonly class BalanceBidirectionalMarker implements Filter
             BidirectionalMarker::POP_DIRECTIONAL_ISOLATE->value => 0,
         ];
 
+        /** @psalm-suppress ImpureFunctionCall */
         $cleaned = preg_replace_callback(
             self::ANY_BIDIRECTIONAL_MARKER_CHARACTERS,
             /**
              * @param array<array-key, string> $match
              */
             static function (array $match) use (&$pops): string {
-                /** @var array<string, int> $pops */
                 [$marker] = $match;
                 $pop = BidirectionalMarker::getPopChar($marker);
                 return match ($pop) {
