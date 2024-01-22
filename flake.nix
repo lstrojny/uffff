@@ -26,7 +26,7 @@
                 extraConfig = "xdebug.mode=coverage";
               };
             };
-          phpVersions = [ 83 84 82 ];
+          phpVersions = [ 83 82 ];
           makeShell = version:
             let phpDrv = makePhp version;
             in {
