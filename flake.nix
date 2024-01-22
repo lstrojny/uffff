@@ -23,7 +23,7 @@
               php =
                 pkgs."php${version}".buildEnv { extensions = ({ enabled, all }: enabled ++ (with all; [ xdebug ])); };
             };
-          phpVersions = [ "8.3" ];
+          phpVersions = [ "8.3" "8.2" ];
           makeShell = version:
             let phpDrv = makePhp (builtins.replaceStrings [ "." ] [ "" ] version);
             in {
