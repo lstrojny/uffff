@@ -23,5 +23,5 @@ $good = Uffff\unicode($bad);
 Use `nix develop` to initialize the development environment defined in `flake.nix`.
 To select a specific version, use:
 
--   `nix develop ".#php83"` to select PHP 8.3
--   `nix develop ".#php82"` to select PHP 8.2
+-   `nix develop .#php83` to select PHP 8.3
+-   `nix develop .#php82` to select PHP 8.2
