@@ -17,7 +17,7 @@
               name = "lstrojny/uffff";
               pname = name;
               runtimeInputs = [ phpPkg ];
-              vendorHash = "sha256-9OYFXv6v2amvBKk15PzqTQdIhPc/HSO0UIwn+lQwETs=";
+              vendorHash = "sha256-xeurPFckxZjRGUj1bZ6OVQj+VkeHGw29aHOUDG7eOSE=";
               version = "0.2.0";
               src = inputs.self;
               composerNoDev = false;

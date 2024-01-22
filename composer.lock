@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a8f6b9b6fca015abafac7e4e9b547641",
+    "content-hash": "ece774fa3f3d4a68bc8cd339ae5b6280",
     "packages": [
         {
             "name": "webmozart/assert",
