@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: [ 8.2 ]
+        php-version: [ 8.2, 8.3 ]
         check: [ "test", "test-mutations", "psalm", "phpstan", "style" ]
 
     name: "PHP ${{ matrix.php-version }} → ${{ matrix.check }}"
