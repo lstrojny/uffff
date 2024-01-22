@@ -69,9 +69,6 @@
         "docs": "SOURCE_DATE_EPOCH=`git log -1 --format=%ct` sphinx-build -M html docs build/docs"
     },
     "config": {
-        "platform": {
-            "php": "8.2.9"
-        },
         "allow-plugins": {
             "veewee/composer-run-parallel": true,
             "dealerdirect/phpcodesniffer-composer-installer": false,
