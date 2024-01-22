@@ -32,6 +32,6 @@
             };
           devShells = builtins.listToAttrs (map makeShell phpVersions);
           devShellsWithDefault = devShells // { default = devShells."php${builtins.head phpVersions}"; };
-        in { devShells = builtins.trace devShellsWithDefault devShellsWithDefault; };
+        in { devShells = devShellsWithDefault; };
     };
 }
