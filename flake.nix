@@ -12,26 +12,31 @@
       perSystem = { config, self', inputs', pkgs, system, lib, ... }:
         let
           makePhp = version:
-            pkgs."php${version}".buildComposerProject {
+            let phpPkg = pkgs."php${builtins.toString version}";
+            in phpPkg.buildComposerProject rec {
               name = "lstrojny/uffff";
-              pname = "lstrojny/uffff";
-              runtimeInputs = [ pkgs."php${version}" ];
+              pname = name;
+              runtimeInputs = [ phpPkg ];
               vendorHash = "sha256-9OYFXv6v2amvBKk15PzqTQdIhPc/HSO0UIwn+lQwETs=";
               version = "0.2.0";
               src = inputs.self;
               composerNoDev = false;
-              php =
-                pkgs."php${version}".buildEnv { extensions = ({ enabled, all }: enabled ++ (with all; [ xdebug ])); };
+              php = phpPkg.buildEnv {
+                extensions = ({ enabled, all }: enabled ++ (with all; [ xdebug ]));
+                extraConfig = "xdebug.mode=coverage";
+              };
             };
-          phpVersions = [ "8.3" "8.2" ];
+          phpVersions = [ 83 84 82 ];
           makeShell = version:
-            let phpDrv = makePhp (builtins.replaceStrings [ "." ] [ "" ] version);
+            let phpDrv = makePhp version;
             in {
-              name = "php${version}";
-              value = pkgs.mkShellNoCC { buildInputs = [ phpDrv ]; };
+              name = "php${builtins.toString version}";
+              value = pkgs.mkShellNoCC { packages = [ phpDrv phpDrv.php phpDrv.php.packages.composer ]; };
             };
           devShells = builtins.listToAttrs (map makeShell phpVersions);
-          devShellsWithDefault = devShells // { default = devShells."php${builtins.head phpVersions}"; };
+          devShellsWithDefault = devShells // {
+            default = devShells."php${builtins.toString (builtins.head phpVersions)}";
+          };
         in { devShells = devShellsWithDefault; };
     };
 }
