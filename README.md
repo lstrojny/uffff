@@ -22,7 +22,7 @@ $good = Uffff\unicode($bad);
 
 ### Setting up the environment
 
-_Uffff_ uses [direnv](https://direnv.net/) to set up the development environment. Run `diren allow` to initialize the
+_Uffff_ uses [direnv](https://direnv.net/) to set up the development environment. Run `direnv allow` to initialize the
 development environment.
 
 To switch to a different PHP version for development or if you prefer not to use direnv, you can use `nix develop` to
@@ -34,8 +34,8 @@ initialize the environment:
 
 ### Making changes
 
-Change the code and then run `composer check` to run tests, static inspections, everything and the kitchen sink. Once
-that is green, open a pull request.
+Change the code and then run `composer check` to run tests, static inspection, everything and the kitchen sink. Once
+that succeeds, open a pull request.
 
 Edit the documentation in `docs/` and run `composer docs` to build the documentation. Open `build/docs/html/index.html`
-in a browser to view the built documentation.
+in a browser to view the HTML version.
