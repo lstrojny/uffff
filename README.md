@@ -20,8 +20,22 @@ $good = Uffff\unicode($bad);
 
 ## Development
 
-Use `nix develop` to initialize the development environment defined in `flake.nix`.
-To select a specific version, use:
+### Setting up the environment
 
--   `nix develop .#php83` to select PHP 8.3
--   `nix develop .#php82` to select PHP 8.2
+_Uffff_ uses [direnv](https://direnv.net/) to set up the development environment. Run `diren allow` to initialize the
+development environment.
+
+To switch to a different PHP version for development or if you prefer not to use direnv, you can use `nix develop` to
+initialize the environment:
+
+-   `nix develop github:loophp/nix-shell#env-php82` to select PHP 8.2
+-   `nix develop github:loophp/nix-shell#env-php83` to select PHP 8.3
+-   `nix develop github:loophp/nix-sphinx` to set up sphinx to build documentation
+
+### Making changes
+
+Change the code and then run `composer check` to run tests, static inspections, everything and the kitchen sink. Once
+that is green, open a pull request.
+
+Edit the documentation in `docs/` and run `composer docs` to build the documentation. Open `build/docs/html/index.html`
+in a browser to view the built documentation.
