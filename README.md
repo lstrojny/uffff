@@ -28,8 +28,8 @@ development environment.
 To switch to a different PHP version for development or if you prefer not to use direnv, you can use `nix develop` to
 initialize the environment:
 
--   `nix develop github:loophp/nix-shell#env-php82` to select PHP 8.2
--   `nix develop github:loophp/nix-shell#env-php83` to select PHP 8.3
+-   `nix develop github:loophp/nix-shell#env-php82 --impure` to select PHP 8.2
+-   `nix develop github:loophp/nix-shell#env-php83 --impure` to select PHP 8.3
 -   `nix develop github:loophp/nix-sphinx` to set up sphinx to build documentation
 
 ### Making changes
