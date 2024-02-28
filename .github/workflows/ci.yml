@@ -20,7 +20,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           coverage: xdebug
-      - uses: ramsey/composer-install@2.2.0
+      - uses: ramsey/composer-install@2.3.0
       - uses: mheap/phpunit-matcher-action@v1.3.0
 
       - run: composer ${{ matrix.check }}
